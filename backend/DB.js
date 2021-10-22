@@ -1,5 +1,4 @@
 
-// Must have title, description, price, and inventory quantity
 async function createTable()
 try {
     
@@ -27,10 +26,8 @@ category_id INT REFERENCES categories(id)
 
 CREATE TABLE orders(
     id SERIAL PRIMARY KEY,
-    auth_user BOOLEAN NOT NULL,
     user_id INT REFERENCES users(id),
-    price DECIMAL NOT NULL,
-    
+    status VARCHAR(255) NOT NULL
 );
 
 CREATE TABLE reviews(
@@ -41,15 +38,12 @@ comment TEXT
 
 CREATE TABLE product_orders(
     product_id INT REFERENCES products(id),
-    price DECIMAL REFERENCES products(price),
+    price DECIMAL NOT NULL,
     order_id INT REFERENCES orders(id),
     quantity INT NOT NULL
 );
 
-CREATE TABLE cart(
-
-)
-    `)
+  `)
     
 } catch (error) {
     throw (error)
