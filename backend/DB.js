@@ -31,7 +31,7 @@ CREATE TABLE orders(
 );
 
 CREATE TABLE reviews(
-product_id INT REFERCENCES products(id)
+product_id INT REFERENCES products(id)
 user_id INT REFERENCES users(id)
 comment TEXT 
 );
