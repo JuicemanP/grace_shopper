@@ -13,21 +13,12 @@ const createDB = async () => {
     console.log(client.query);
     await client.query(
       `
-<<<<<<< HEAD
       DROP TABLE IF EXISTS reviews CASCADE;       
       DROP TABLE IF EXISTS products CASCADE;
       DROP TABLE IF EXISTS orders CASCADE; 
       DROP TABLE IF EXISTS product_orders CASCADE;
       DROP TABLE IF EXISTS users CASCADE;
       DROP TABLE IF EXISTS categories CASCADE;
-=======
-    DROP TABLE IF EXISTS product_orders;
-    DROP TABLE IF EXISTS categories CASCADE; 
-    DROP TABLE IF EXISTS products CASCADE;
-    DROP TABLE IF EXISTS users CASCADE;
-    DROP TABLE IF EXISTS orders CASCADE;    
-    DROP TABLE IF EXISTS reviews CASCADE;
->>>>>>> 635edbffac751ad478eb9103959345e6323484ec
 
     
     CREATE TABLE categories(
@@ -152,6 +143,7 @@ const seedDB = async () => {
     await createInitialProducts();
     await createInitialOrder();
     await getProductOrdersById();
+    await createProductOrders();
   } catch (error) {}
 };
 
