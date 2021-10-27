@@ -1,7 +1,6 @@
 
 async function createTable()
-try {
-    
+try {   
     await client.query(`
 CREATE TABLE categories(
     id SERIAL PRIMARY KEY,
