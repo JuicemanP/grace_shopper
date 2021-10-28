@@ -4,22 +4,20 @@ const {
   createProduct,
   getAllUsers,
   createOrders,
-  getProductOrdersById,
+  createProductOrders,
 } = require("./");
 
 const createDB = async () => {
-  console.log("well hello there");
   try {
-    console.log(client.query);
+    console.log("Creating Tables");
     await client.query(
       `
-      DROP TABLE IF EXISTS reviews CASCADE;       
-      DROP TABLE IF EXISTS products CASCADE;
-      DROP TABLE IF EXISTS orders CASCADE; 
-      DROP TABLE IF EXISTS product_orders CASCADE;
-      DROP TABLE IF EXISTS users CASCADE;
-      DROP TABLE IF EXISTS categories CASCADE;
-
+    DROP TABLE IF EXISTS product_orders;
+    DROP TABLE IF EXISTS categories CASCADE; 
+    DROP TABLE IF EXISTS products CASCADE;
+    DROP TABLE IF EXISTS users CASCADE;
+    DROP TABLE IF EXISTS orders CASCADE;    
+    DROP TABLE IF EXISTS reviews CASCADE;
     
     CREATE TABLE categories(
         id SERIAL PRIMARY KEY,
@@ -93,7 +91,6 @@ async function createCategories() {
         INSERT INTO categories (name) VALUES ($1)`,
         [category.name]
       );
-      console.log(category.name);
     }
   } catch (error) {
     console.error("Error creating category!");
@@ -103,7 +100,7 @@ async function createCategories() {
 async function createInitialProducts() {
   try {
     const [user] = await getAllUsers();
-    console.log(user);
+
     await createProduct({
       user_id: user.id,
       title: "Product",
@@ -127,12 +124,17 @@ async function createInitialOrder() {
     throw error;
   }
 }
-async function createProductOrders({ price, quantity, order_id, product_id }) {
+async function createProductOrder() {
   try {
-    await client.query(``);
-
-    // await client query INSERT INTO product_orders
-  } catch (error) {}
+    await createProductOrders({
+      product_id: 1,
+      price: 100.0,
+      order_id: 1,
+      quantity: 10,
+    });
+  } catch (error) {
+    throw "No Product Order";
+  }
 }
 const seedDB = async () => {
   try {
@@ -142,8 +144,7 @@ const seedDB = async () => {
     await createCategories();
     await createInitialProducts();
     await createInitialOrder();
-    await getProductOrdersById();
-    await createProductOrders();
+    await createProductOrder();
   } catch (error) {}
 };
 
