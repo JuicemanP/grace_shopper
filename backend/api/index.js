@@ -12,4 +12,12 @@ apiRouter.use("/health", (req, res) => {
   }
 });
 
+apiRouter.use("/users", usersRouter);
+
+apiRouter.use("/orders", ordersRouter);
+
+apiRouter.use("/products", productsRouter);
+
+apiRouter.use("/reviews", reviewsRouter);
+
 module.exports = apiRouter;
