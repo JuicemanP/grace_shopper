@@ -25,6 +25,10 @@ async function createProduct({
     throw error;
   }
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 9ae3b9d599ae0eba12265894b2184337c4855a8d
 async function createProductOrders({ product_id, price, order_id, quantity }) {
   try {
     await client.query(
