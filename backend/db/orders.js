@@ -36,7 +36,7 @@ async function getProductById(productId) {
     throw error;
   }
 }
-async function getProductOrdersById(productTitle) {
+async function getProductOrdersByProducts(productTitle) {
   try {
     const { rows: productId } = await client.query(
       `
@@ -55,4 +55,4 @@ async function getProductOrdersById(productTitle) {
     throw error;
   }
 }
-module.exports = { createOrders, getProductById, getProductOrdersById };
+module.exports = { createOrders, getProductById, getProductOrdersByProducts };
