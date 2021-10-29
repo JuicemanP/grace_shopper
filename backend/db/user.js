@@ -27,8 +27,9 @@ async function getAllUsers({ username, email }) {
       `,
       [username, email]
     );
-
+    console.log("HERE");
     const user = response.rows[0];
+    console.log(user);
     if (await bcrypt.compare(password, user.password)) {
       delete user.password;
       return user;
