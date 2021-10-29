@@ -4,7 +4,7 @@ const {
   createProduct,
   getAllUsers,
   createOrders,
-  createProductOrders
+  createProductOrders,
 } = require("./");
 
 const createDB = async () => {
@@ -76,7 +76,6 @@ async function createInitialUser() {
       username: "user",
       password: "password",
     });
-    
   } catch (error) {
     console.error("Error creating user!");
     throw error;
@@ -92,7 +91,6 @@ async function createCategories() {
         INSERT INTO categories (name) VALUES ($1)`,
         [category.name]
       );
-      
     }
   } catch (error) {
     console.error("Error creating category!");
@@ -101,10 +99,11 @@ async function createCategories() {
 }
 async function createInitialProducts() {
   try {
-    const [user] = await getAllUsers();
-    
+    // const [user] = await getAllUsers();
+    // console.log(user);
+
     await createProduct({
-      user_id: user.id,
+      user_id: 1,
       title: "Product",
       description: "Product",
       price: 123,
@@ -117,9 +116,9 @@ async function createInitialProducts() {
 }
 async function createInitialOrder() {
   try {
-    const [user] = await getAllUsers();
+    // const [user] = await getAllUsers();
     await createOrders({
-      user_id: user.id,
+      user_id: 1,
       status: "pending",
     });
   } catch (error) {
@@ -127,17 +126,15 @@ async function createInitialOrder() {
   }
 }
 async function createProductOrder() {
-  
   try {
-await createProductOrders({
-  product_id: 1,
-   price: 100.00,
-   order_id: 1,
-   quantity: 10
-});
-
+    await createProductOrders({
+      product_id: 1,
+      price: 100.0,
+      order_id: 1,
+      quantity: 10,
+    });
   } catch (error) {
-    throw ("No Product Order");
+    throw "No Product Order";
   }
 }
 const seedDB = async () => {
@@ -145,11 +142,14 @@ const seedDB = async () => {
     client.connect();
     await createDB();
     await createInitialUser();
+    console.log("Created User");
     await createCategories();
+    console.log("Created Categories");
     await createInitialProducts();
+    console.log("Created products");
     await createInitialOrder();
-    await createProductOrder()
-   
+    console.log("Created Order");
+    await createProductOrder();
   } catch (error) {}
 };
 
