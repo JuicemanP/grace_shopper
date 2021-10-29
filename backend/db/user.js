@@ -18,7 +18,7 @@ async function createUser({ email, username, password }) {
     throw error;
   }
 }
-async function getAllUsers({ username, email }) {
+async function getAllUsers({ username, email,password }) {
   try {
     const response = await client.query(
       `
