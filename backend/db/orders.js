@@ -18,20 +18,19 @@ async function createOrders({ user_id, status }) {
     throw error;
   }
 }
-async function getProductById(productId) {
+async function getOrdersByUser(userId) {
   try {
-    const {
-      rows: [product],
-    } = await client.query(
+    const response = await client.query(
       `
       SELECT * 
-      FROM products
-      WHERE id=$1;
+      FROM orders
+      WHERE user_id=$1;
     `,
-      [productId]
+      [userId]
     );
 
-    return product;
+    const orders = response.rows;
+    return orders;
   } catch (error) {
     throw error;
   }
@@ -55,4 +54,4 @@ async function getProductOrdersByProduct(productTitle) {
     throw error;
   }
 }
-module.exports = { createOrders, getProductById, getProductOrdersByProduct };
+module.exports = { createOrders, getOrdersByUser, getProductOrdersByProduct };
