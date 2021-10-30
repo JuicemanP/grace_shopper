@@ -5,18 +5,18 @@ const usersRouter = require("express").Router();
 const jwt = require("jsonwebtoken");
 const { JWT_SECRET } = process.env;
 
-usersRouter.post("/register", async (req, res) => {
+usersRouter.post("/register", async (req, res,next) => {
   
     try {
       const { email,username, password } = req.body;
   
       if (password.length < 8) {
-        return res.status(404).send("Password is too short!");
+        return res.status(404).send({error: "Password is too short!"});
       }
       const user = await createUser({ email,username, password });
       res.send({ user: user });
     } catch (error) {
-      res.status(404).send("Username already exists!");
+      res.status(404).send({error:"Username already exists!"});
     }
   });
 
@@ -29,4 +29,12 @@ usersRouter.post("/register", async (req, res) => {
     res.send({token})
   
   });
+
+  usersRouter.get("/me", (req,res,next)=>{
+  
+    if(req.user){
+      return res.send(req.user)
+    }
+    res.status(401).send("Not logged in!")
+  })
 module.exports = usersRouter;
