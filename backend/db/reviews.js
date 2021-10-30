@@ -43,6 +43,23 @@ const getReviewsByUser = async (userId) => {
   }
 };
 
+const createReview = async ({ productId, userId, comment }) => {
+  try {
+    const response = await client.query(
+      `
+        INSERT INTO reviews (product_id, user_id, comment)
+        VALUES($1, $2, $3)
+        RETURNING *;
+        `,
+      [productId, userId, comment]
+    );
+    const data = response.rows[0];
+    return data;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
 const destroyReview = async (reviewId) => {
   try {
     const response = await client.query(
@@ -64,4 +81,5 @@ module.exports = {
   getReviewsByProduct,
   getReviewsByUser,
   destroyReview,
+  createReview,
 };
