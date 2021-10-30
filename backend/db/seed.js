@@ -6,6 +6,7 @@ const {
   createOrders,
   createProductOrders,
 } = require("./");
+const { createReview } = require("./reviews");
 
 const createDB = async () => {
   try {
@@ -51,12 +52,14 @@ const createDB = async () => {
     );
     
     CREATE TABLE reviews(
-    product_id INT REFERENCES products(id),
-    user_id INT REFERENCES users(id),
-    comment TEXT 
+      id SERIAL PRIMARY KEY,
+      product_id INT REFERENCES products(id),
+      user_id INT REFERENCES users(id),
+      comment TEXT 
     );
     
     CREATE TABLE product_orders(
+        id SERIAL PRIMARY KEY,
         product_id INT REFERENCES products(id),
         price DECIMAL NOT NULL,
         order_id INT REFERENCES orders(id),
@@ -79,6 +82,18 @@ async function createInitialUser() {
   } catch (error) {
     console.error("Error creating user!");
     throw error;
+  }
+}
+
+async function createInitialReviews() {
+  try {
+    await createReview({
+      productId: 1,
+      userId: 1,
+      comment: "This thing is cool",
+    });
+  } catch (error) {
+    console.error(error);
   }
 }
 
@@ -150,6 +165,9 @@ const seedDB = async () => {
     await createInitialOrder();
     console.log("Created Order");
     await createProductOrder();
+    console.log("Created Product Order");
+    await createInitialReviews();
+    console.log("Created Reviews");
   } catch (error) {}
 };
 
