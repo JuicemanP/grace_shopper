@@ -99,10 +99,11 @@ async function createCategories() {
 }
 async function createInitialProducts() {
   try {
-    const [user] = await getAllUsers();
+    // const [user] = await getAllUsers();
+    // console.log(user);
 
     await createProduct({
-      user_id: user.id,
+      user_id: 1,
       title: "Product",
       description: "Product",
       price: 123,
@@ -115,9 +116,9 @@ async function createInitialProducts() {
 }
 async function createInitialOrder() {
   try {
-    const [user] = await getAllUsers();
+    // const [user] = await getAllUsers();
     await createOrders({
-      user_id: user.id,
+      user_id: 1,
       status: "pending",
     });
   } catch (error) {
@@ -141,9 +142,13 @@ const seedDB = async () => {
     client.connect();
     await createDB();
     await createInitialUser();
+    console.log("Created User");
     await createCategories();
+    console.log("Created Categories");
     await createInitialProducts();
+    console.log("Created products");
     await createInitialOrder();
+    console.log("Created Order");
     await createProductOrder();
   } catch (error) {}
 };
