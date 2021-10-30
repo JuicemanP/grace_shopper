@@ -26,7 +26,7 @@ usersRouter.post("/register", async (req, res,next) => {
    
     const token = jwt.sign({id: user.id, username}, JWT_SECRET)
     console.log(token)
-    res.send({token})
+    res.send({username:username, token: token })
   
   });
 
