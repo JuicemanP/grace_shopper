@@ -1,4 +1,5 @@
 const Logout = ()=>{
-    return <div>Logout</div>
-    }
+    localStorage.removeItem("token");
+    window.location.href ="/"
+}
     export default Logout
