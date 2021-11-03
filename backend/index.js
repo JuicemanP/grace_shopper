@@ -27,7 +27,7 @@ return next()
 })
 server.use("/api", apiRouter);
 
-server.listen(process.env.PORT || 3000, () => {
+server.listen(process.env.PORT || 3001, () => {
   client.connect();
   console.log("The server is up on port");
 });
