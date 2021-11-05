@@ -1,6 +1,6 @@
 const { client } = require("./client");
 
-async function createOrders({ user_id, status }) {
+async function createOrder({ user_id, status }) {
   try {
     const {
       rows: [order],
@@ -35,23 +35,5 @@ async function getOrdersByUser(userId) {
     throw error;
   }
 }
-async function getProductOrdersByProduct(productTitle) {
-  try {
-    const { rows: productId } = await client.query(
-      `
-        SELECT products
-        FROM orders
-        JOIN product_id ON products.id=product_id
-        JOIN orders_id ON orders.id=orders_id
-        WHERE product.title=$1;
-      `,
-      [productTitle]
-    );
-    return await Promise.all(
-      productId.map((product) => getProductById(product.id))
-    );
-  } catch (error) {
-    throw error;
-  }
-}
-module.exports = { createOrders, getOrdersByUser, getProductOrdersByProduct };
+
+module.exports = { createOrder, getOrdersByUser };

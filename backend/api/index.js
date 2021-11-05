@@ -3,6 +3,7 @@ const usersRouter = require("./users");
 const ordersRouter = require("./orders");
 const productsRouter = require("./products");
 const reviewsRouter = require("./reviews");
+const productOrdersRouter = require("./product_orders");
 
 apiRouter.use("/health", (req, res) => {
   try {
@@ -19,5 +20,7 @@ apiRouter.use("/orders", ordersRouter);
 apiRouter.use("/products", productsRouter);
 
 apiRouter.use("/reviews", reviewsRouter);
+
+apiRouter.use("/productorders", productOrdersRouter);
 
 module.exports = apiRouter;

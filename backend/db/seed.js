@@ -39,6 +39,7 @@ const createDB = async () => {
     description VARCHAR(255) NOT NULL,
     price DECIMAL NOT NULL,
     quantity INT NOT NULL,
+    image VARCHAR (255),
     category_id INT REFERENCES categories(id)
     
 
