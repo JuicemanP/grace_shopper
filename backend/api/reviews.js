@@ -17,7 +17,7 @@ reviewsRouter.post("/", async (req, res) => {
     });
     return res.send(review);
   } catch (error) {
-    console.error(error);
+    res.status(500).send({ error: error });
   }
 });
 
@@ -26,7 +26,7 @@ reviewsRouter.get("/", async (req, res) => {
     const reviews = await getAllReviews();
     return res.send(reviews);
   } catch (error) {
-    console.error(error);
+    res.status(500).send({ error: "error" });
   }
 });
 
@@ -36,7 +36,7 @@ reviewsRouter.get("/users/:userId", async (req, res) => {
     const reviews = await getReviewsByUser(userId);
     return res.send(reviews);
   } catch (error) {
-    console.error(error);
+    res.status(500).send({ error: "error" });
   }
 });
 
@@ -46,7 +46,7 @@ reviewsRouter.delete("/:id", async (req, res) => {
     const deletedReview = await destroyReview(id);
     return res.send(deletedReview);
   } catch (error) {
-    console.error(error);
+    res.status(500).send({ error: "error" });
   }
 });
 
@@ -56,7 +56,7 @@ reviewsRouter.get("/:productId", async (req, res) => {
     const reviews = await getReviewsByProduct(productId);
     return res.send(reviews);
   } catch (error) {
-    console.error(error);
+    res.status(500).send({ error: "error" });
   }
 });
 
