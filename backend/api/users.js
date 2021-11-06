@@ -12,8 +12,7 @@ usersRouter.post("/register", async (req, res, next) => {
       return res.status(404).send({ error: "Password is too short!" });
     }
     const user = await createUser({ email, username, password });
-
-    res.send({ user: user });
+    const token = res.send({ user: user });
   } catch (error) {
     res.status(404).send({ error: "Username already exists!" });
   }
@@ -42,9 +41,7 @@ usersRouter.post("/login", async (req, res, next) => {
 
 usersRouter.get("/me", async (req, res, next) => {
   try {
-    // res.send(req.user);
-    // res.send({ key: "me" });
-    console.log(req.user);
+    res.send({ user: req.user });
   } catch (error) {
     throw error;
   }

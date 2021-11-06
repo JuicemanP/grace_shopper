@@ -23,6 +23,7 @@ const Login = (props) => {
       }),
     });
     const info = await response.json();
+
     if (info.error) {
       setErrorMessage(info.error);
       return;

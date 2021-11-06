@@ -20,18 +20,17 @@ function App() {
       if (!token) {
         return;
       }
-      // setToken(token);
 
       const resp = await fetch(`${BASE_URL}/users/me`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
-      console.log(resp);
+
       const info = await resp.json();
 
-      setUser({ id: info.id, username: info.username });
-      setToken(token);
+      setUser({ id: info.user.id, username: info.user.username });
+      setToken(info.token);
     };
     fetchUser();
   }, []);

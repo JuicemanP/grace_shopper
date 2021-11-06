@@ -7,24 +7,29 @@ const cors = require("cors");
 const jwt = require("jsonwebtoken");
 
 const apiRouter = require("./api");
-const { getUser } = require("./db/user");
+const { getUserById } = require("./db/user");
+const multer = require("multer");
 
 server.use(cors());
 server.use(express.json());
 
 server.use(async (req, res, next) => {
   const token = req.headers.authorization
-    ? req.headers.authorization.split("")[1]
+    ? req.headers.authorization.split(" ")[1]
     : null;
   console.log("token", token);
   // if (!token) {
   //   return next();
   // }
 
-  // const decodedToken = jwt.verify(token, process.env.JWT_SECRET);
-  // const user = await getUser({ username: decodedToken.username });
-  // delete user.password;
-  // req.user = user;
+  if (!token) {
+    return next();
+  }
+  const decodedToken = jwt.verify(token, process.env.JWT_SECRET);
+
+  const user = await getUserById(decodedToken.id);
+  delete user.password;
+  req.user = user;
   return next();
 });
 server.use("/api", apiRouter);
