@@ -13,6 +13,7 @@ async function createUser({ email, username, password }) {
       [email, username, hashPassword]
     );
     const user = response.rows[0];
+
     delete user.password;
     return user;
   } catch (error) {
@@ -41,10 +42,11 @@ const getUser = async ({ username, password }) => {
     const response = await client.query(
       `
     SELECT * FROM users
-    WHERE username = $1
+    WHERE username = $1;
     `,
       [username]
     );
+
     const user = response.rows[0];
 
     if (await bcrypt.compare(password, user.password)) {

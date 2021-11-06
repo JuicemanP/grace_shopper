@@ -8,7 +8,6 @@ const upload = multer({ dest: "public/images" });
 productsRouter.get("getProducts", async (req, res) => {
   try {
     const products = await getAllProducts();
-    console.log(res);
     return res.send(products);
   } catch (error) {
     res.status(500).send({ error });

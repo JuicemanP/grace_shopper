@@ -1,88 +1,62 @@
-<<<<<<< HEAD
+import { useEffect, useState } from "react";
 import { Route } from "react-router";
 import "./App.css";
+import BASE_URL from "./BaseURL";
 import Home from "./components/Home";
 import Login from "./components/Login";
 import Logout from "./components/Logout";
 import Navbar from "./components/Navbar";
 import Register from "./components/Register";
-import Cart from "./components/Cart";
 import Products from "./components/Products";
-=======
-
-import { useEffect, useState } from 'react';
-import { Route } from 'react-router';
-import './App.css';
-import BASE_URL from './BaseURL';
-import Home from './components/Home';
-import Login from './components/Login';
-import Logout from './components/Logout';
-import Navbar from './components/Navbar';
-import Register from './components/Register';
->>>>>>> bacf71eafb71e780bad6e8538332b94304485997
 
 function App() {
-  const [user, setUser] = useState(null)
+  const [user, setUser] = useState(null);
   const [token, setToken] = useState(null);
- 
 
   useEffect(() => {
     const fetchUser = async () => {
       const token = localStorage.getItem("token");
-      
+      console.log(token);
       if (!token) {
         return;
       }
-      setToken(token);
-      
+      // setToken(token);
+
       const resp = await fetch(`${BASE_URL}/users/me`, {
         headers: {
-          "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
         },
       });
+      console.log(resp);
       const info = await resp.json();
-      console.log(info)
-      setUser({id: info.id, username: info.username});
+
+      setUser({ id: info.id, username: info.username });
+      setToken(token);
     };
     fetchUser();
-  }, [token]);
+  }, []);
   return (
     <div>
-<<<<<<< HEAD
-      <Navbar />
+      <Navbar user={user} />
       <Route exact path="/">
-        <Home />
+        <Home user={user} />
       </Route>
       <Route path="/register">
-        <Register />
+        <Register setToken={setToken} />
       </Route>
       <Route path="/login">
-        <Login />
-      </Route>
-      <Route path="/logout">
-        <Logout />
-      </Route>
-      <Route path="/shopping-cart">
-        <Cart />
-=======
-      <Navbar user={user}/>
-      <Route exact path = "/">
-        <Home user={user}/>
-      </Route>
-      <Route path ="/register">
-        <Register setToken={setToken}/>
-      </Route>
-      <Route path ="/login">
         <Login
-        user={user}
-        setUser={setUser}
-        token={token}
-        setToken={setToken}/>
->>>>>>> bacf71eafb71e780bad6e8538332b94304485997
+          user={user}
+          setUser={setUser}
+          token={token}
+          setToken={setToken}
+        />
       </Route>
       <Route path="/products">
         <Products />
+      </Route>
+      <Route path="/logout">
+        <Logout />
       </Route>
     </div>
   );
