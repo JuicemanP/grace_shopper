@@ -12,20 +12,14 @@ usersRouter.post("/register", async (req, res, next) => {
       return res.status(404).send({ error: "Password is too short!" });
     }
     const user = await createUser({ email, username, password });
+    const token=
     res.send({ user: user });
   } catch (error) {
     res.status(404).send({ error: "Username already exists!" });
   }
 });
 
-usersRouter.post("/login", async (req, res) => {
-  const { username, password } = req.body;
-  const user = await getUser({ username, password });
 
-  const token = jwt.sign({ id: user.id, username }, JWT_SECRET);
-  console.log(token);
-  res.send({ username: username, token: token });
-});
 usersRouter.post("/login", async (req, res, next) => {
   const { username, password } = req.body;
 
@@ -50,7 +44,7 @@ usersRouter.post("/login", async (req, res, next) => {
 
 usersRouter.get("/me",  async (req, res, next) => {
   try {
-    res.send(req.user);
+    res.send({user: req.user });
   } catch (error) {
     throw(error);
   }
