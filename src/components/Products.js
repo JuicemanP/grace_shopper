@@ -3,17 +3,18 @@ import BASE_URL from "../BaseURL";
 import { useHistory } from "react-router-dom";
 
 const Products = () => {
-  const [name, setName] = useState("");
+  const [title, setTitle] = useState("");
   const [image, setImage] = useState("");
   const [jerseys, setJerseys] = useState([]);
 
   const fetchJerseys = async () => {
-    const response = await fetch(`${BASE_URL}/getProducts`, {
+    const response = await fetch(`${BASE_URL}/products`, {
       contentType: "application/json",
       //   contentType: "text/plain",
     });
     const info = await response.json();
-    // setJerseys(info.data);
+    console.log(info, "info");
+    setJerseys(info);
   };
   //   console.log(info.data);
   useEffect(() => {
@@ -27,7 +28,7 @@ const Products = () => {
         onSubmit={async (e) => {
           e.preventDefault();
           const formData = new FormData();
-          formData.append("name", name);
+          formData.append("title", title);
           formData.append("image", image);
           console.log("running");
           const response = await fetch("http://localhost:3001/api/products", {
@@ -35,20 +36,22 @@ const Products = () => {
             body: formData,
           });
           const info = await response.json();
+          fetchJerseys();
+          console.log(info);
         }}
       >
         <input
-          placeholder="Player's Name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
+          placeholder="Player's title"
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
         />
         <input type="file" onChange={(e) => setImage(e.target.files[0])} />
         <button>Add jersey!</button>
       </form>
-      {jerseys.map((jerseys) => (
+      {jerseys.map((jersey) => (
         <div>
-          <h3>{jerseys.name}</h3>
-          <img src={`http://localhost:3001/api/images/${jerseys.image}`} />
+          <h3>{jersey.title}</h3>
+          {/* <img src={`http://localhost:3001/api/images/${jersey.image}`} /> */}
         </div>
       ))}
     </div>

@@ -5,7 +5,7 @@ const upload = multer({ dest: "public/images" });
 
 //GET ALL PRODUCTS
 
-productsRouter.get("getProducts", async (req, res) => {
+productsRouter.get("/", async (req, res) => {
   try {
     const products = await getAllProducts();
     return res.send(products);
@@ -38,7 +38,7 @@ productsRouter.post("/", upload.single("image"), async (req, res) => {
 
 //UPDATE PRODUCT
 
-productsRouter.patch("/products/:id", async (req, res) => {
+productsRouter.patch("/:id", async (req, res) => {
   try {
     const { id, title, description, price, quantity } = req.body;
     const updatedProduct = await updateProduct({

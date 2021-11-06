@@ -5,7 +5,7 @@ const {
   getUsers,
   createOrders,
   createProductOrders,
-  getUserById
+  getUserById,
 } = require("./");
 const { createReview } = require("./reviews");
 
@@ -24,6 +24,7 @@ const createDB = async () => {
     CREATE TABLE categories(
         id SERIAL PRIMARY KEY,
         name VARCHAR(255) NOT NULL
+        
     );
     
     CREATE TABLE users (
@@ -42,6 +43,7 @@ const createDB = async () => {
     quantity INT NOT NULL,
     image VARCHAR (255),
     category_id INT REFERENCES categories(id)
+
     
 
 
@@ -101,7 +103,11 @@ async function createInitialReviews() {
 
 async function createCategories() {
   try {
-    const categories = [{ name: "gym" }, { name: "auto" }, { name: "home" }];
+    const categories = [
+      { name: "women" },
+      { name: "children" },
+      { name: "men" },
+    ];
     for (let category of categories) {
       await client.query(
         `
