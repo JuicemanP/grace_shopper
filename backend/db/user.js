@@ -38,31 +38,35 @@ async function getUserByUsername({ username }) {
 
 const getUser = async ({ username, password }) => {
   try {
-
-    const response=await client.query(`
+    const response = await client.query(
+      `
     SELECT * FROM users
     WHERE username = $1
-    `,[username])
-    const user = response.rows[0]
+    `,
+      [username]
+    );
+    const user = response.rows[0];
 
-    if
-    (await bcrypt.compare(password,user.password)){
- 
-    delete user.password
-    return user
-}
-} catch (error) {
-    throw(error)
+    if (await bcrypt.compare(password, user.password)) {
+      delete user.password;
+      return user;
+    }
+  } catch (error) {
+    throw error;
   }
 };
-async function getUserById(id){
+async function getUserById(id) {
   try {
- const response= await client.query(`
+    const response = await client.query(
+      `
   SELECT * FROM users
   WHERE id=$1
-  `,[id])
-  return response.rows[0];
-} catch (error) {
-  throw(error)
-}}
-module.exports = { createUser, getUserByUsername, getUser,getUserById };
+  `,
+      [id]
+    );
+    return response.rows[0];
+  } catch (error) {
+    throw error;
+  }
+}
+module.exports = { createUser, getUserByUsername, getUser, getUserById };

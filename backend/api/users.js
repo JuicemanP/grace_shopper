@@ -18,14 +18,14 @@ usersRouter.post("/register", async (req, res, next) => {
   }
 });
 
-usersRouter.post("/login", async (req, res) => {
-  const { username, password } = req.body;
-  const user = await getUser({ username, password });
+// usersRouter.post("/login", async (req, res) => {
+//   const { username, password } = req.body;
+//   const user = await getUser({ username, password });
 
-  const token = jwt.sign({ id: user.id, username }, JWT_SECRET);
-  console.log(token);
-  res.send({ username: username, token: token });
-});
+//   const token = jwt.sign({ id: user.id, username }, JWT_SECRET);
+//   console.log(token);
+//   res.send({ username: username, token: token });
+// });
 usersRouter.post("/login", async (req, res, next) => {
   const { username, password } = req.body;
 
@@ -48,11 +48,11 @@ usersRouter.post("/login", async (req, res, next) => {
   }
 });
 
-usersRouter.get("/me",  async (req, res, next) => {
+usersRouter.get("/me", async (req, res, next) => {
   try {
     res.send(req.user);
   } catch (error) {
-    throw(error);
+    throw error;
   }
 });
 module.exports = usersRouter;
