@@ -67,14 +67,7 @@ RETURNING *;
   }
 }
 
-async function updateProduct({
-  id,
-  title,
-  description,
-  price,
-  quantity,
-  image,
-}) {
+async function updateProduct({ id, title, description, price, quantity }) {
   try {
     if (title) {
       await client.query(
@@ -116,17 +109,6 @@ async function updateProduct({
       WHERE id = $2;
       `,
         [quantity, id]
-      );
-    }
-
-    if (image) {
-      await client.query(
-        `
-      UPDATE products 
-      SET image = $1
-      WHERE id = $2;
-      `,
-        [image, id]
       );
     }
     const product = await getProductById(id);
