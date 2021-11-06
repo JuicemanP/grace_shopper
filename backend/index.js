@@ -4,10 +4,10 @@ const { client } = require("./db/client");
 const express = require("express");
 const server = express();
 const cors = require("cors");
+const jwt = require("jsonwebtoken");
 
 const apiRouter = require("./api");
-const { getUserByUsername } = require("./db/user");
-const multer = require("multer");
+const { getAllUsers } = require("./db/user");
 
 server.use(cors());
 server.use(express.json());
@@ -21,7 +21,7 @@ server.use(async (req, res, next) => {
     return next();
   }
   const decodedToken = jwt.verify(token, process.env.JWT_SECRET);
-  const user = await getUserByUsername(decodedToken.username);
+  const user = await getAllUsers(decodedToken.username);
   delete user.password;
   req.user = user;
   return next();

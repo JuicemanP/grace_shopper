@@ -24,8 +24,6 @@ async function createProduct({
     throw error;
   }
 }
-<<<<<<< HEAD
-=======
 
 const getAllProducts = async () => {
   try {
@@ -54,7 +52,6 @@ const getProductById = async (id) => {
   }
 };
 
->>>>>>> 48716e98192b395ae4fc70f91b728103444d0303
 async function createProductOrders({ product_id, price, order_id, quantity }) {
   try {
     await client.query(

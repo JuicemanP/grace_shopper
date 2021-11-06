@@ -1,14 +1,15 @@
 const productsRouter = require("express").Router();
+const getProductsRouter = require("express").Router();
 const { getAllProducts, createProduct } = require("../db");
 const multer = require("multer");
 const upload = multer({ dest: "public/images" });
 
-
 //GET ALL PRODUCTS
 
-productsRouter.get("/", async (req, res) => {
+productsRouter.get("getProducts", async (req, res) => {
   try {
     const products = await getAllProducts();
+    console.log(res);
     return res.send(products);
   } catch (error) {
     res.status(500).send({ error });
@@ -29,7 +30,6 @@ productsRouter.post("/", upload.single("image"), async (req, res) => {
       quantity: quantity,
       image: req.file.filename,
       category_id: category_id,
-
     });
 
     return res.send(product);
@@ -40,13 +40,39 @@ productsRouter.post("/", upload.single("image"), async (req, res) => {
 
 //UPDATE PRODUCT
 
-productsRouter.patch("/products/:id", async (req, res) => {
-  try {
-    const {}
-  } catch (error) {
-    res.status(500).send({ error: "error" });
+// productsRouter.patch("/products/:id", async (req, res) => {
+//   try {
+//     const {}
+//   } catch (error) {
+//     res.status(500).send({ error: "error" });
+//   }
+// });
+
+//image router
+
+productsRouter.post(
+  "/uploadJersey",
+  upload.single("image"),
+  async (req, res) => {
+    const response = await client.query(
+      `
+      INSERT INTO products (name, image) VALUES ($1, $2)
+      RETURNING *;
+      `,
+
+      [req.body.name, req.file.filename]
+    );
+    res.send({ data: response.rows[0] });
   }
+);
+
+productsRouter.get("/products", async (req, res) => {
+  const response = await client.query(`
+      SELECT * FROM products;
+      `);
+  res.send({ data: response.rows });
 });
+
 // productsRouter.get("/productorders", (req, res) => {
 //   try {
 //     const newProductOrders = products.map((product_orders) => {
