@@ -8,7 +8,7 @@ const cors = require("cors");
 const jwt = require("jsonwebtoken");
 
 const apiRouter = require("./api");
-const { getUserByUsername } = require("./db/user");
+const { getUserById } = require("./db/user");
 const multer = require("multer");
 
 server.use(cors());
@@ -16,14 +16,15 @@ server.use(express.json());
 
 server.use(async (req, res, next) => {
   const token = req.headers.authorization
-    ? req.headers.authorization.split("")[1]
+    ? req.headers.authorization.split(" ")[1]
     : null;
 
   if (!token) {
     return next();
   }
   const decodedToken = jwt.verify(token, process.env.JWT_SECRET);
-  const user = await getUserByUsername(decodedToken.username);
+  
+  const user = await getUserById(decodedToken.id);
   delete user.password;
   req.user = user;
   return next();

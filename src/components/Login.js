@@ -25,7 +25,7 @@ const handlesubmit= async (e)=>{
         })
       })
       const info=await response.json()
-      console.log(info)
+      
       if (info.error){
           setErrorMessage(info.error);
           return

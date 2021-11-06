@@ -1,7 +1,8 @@
 const productsRouter = require("express").Router();
-const { getAllProducts, createProduct, updateProduct } = require("../db");
+const { getAllProducts, createProduct } = require("../db");
 const multer = require("multer");
 const upload = multer({ dest: "public/images" });
+
 
 //GET ALL PRODUCTS
 
@@ -28,6 +29,7 @@ productsRouter.post("/", upload.single("image"), async (req, res) => {
       quantity: quantity,
       image: req.file.filename,
       category_id: category_id,
+
     });
 
     return res.send(product);
@@ -37,7 +39,6 @@ productsRouter.post("/", upload.single("image"), async (req, res) => {
 });
 
 //UPDATE PRODUCT
-
 
 productsRouter.patch("/products/:id", async (req, res) => {
   try {
@@ -53,7 +54,6 @@ productsRouter.patch("/products/:id", async (req, res) => {
     res.status(500).send({ error: "error" });
   }
 });
-
 // productsRouter.get("/productorders", (req, res) => {
 //   try {
 //     const newProductOrders = products.map((product_orders) => {
