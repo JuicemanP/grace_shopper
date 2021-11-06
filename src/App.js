@@ -7,6 +7,7 @@ import Home from './components/Home';
 import Login from './components/Login';
 import Logout from './components/Logout';
 import Navbar from './components/Navbar';
+import Products from './components/Products';
 import Register from './components/Register';
 
 function App() {
@@ -51,6 +52,9 @@ function App() {
         setUser={setUser}
         token={token}
         setToken={setToken}/>
+      </Route>
+      <Route path ="/products">
+        <Products/>
       </Route>
       <Route path ="/logout">
         <Logout/>
