@@ -1,4 +1,5 @@
-const Home = ()=>{
-    return <div>home</div>
+const Home = (props)=>{
+    console.log(props)
+    return <div>Welcome</div>
     }
     export default Home

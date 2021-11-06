@@ -6,6 +6,8 @@ const server = express();
 const cors = require("cors");
 const jwt = require("jsonwebtoken");
 
+const jwt = require("jsonwebtoken");
+
 const apiRouter = require("./api");
 const { getAllUsers } = require("./db/user");
 

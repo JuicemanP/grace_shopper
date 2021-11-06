@@ -55,5 +55,18 @@ const getUser = async ({ username, password }) => {
     throw error;
   }
 };
-
-module.exports = { createUser, getUserByUsername, getUser };
+async function getUserById(id) {
+  try {
+    const response = await client.query(
+      `
+  SELECT * FROM users
+  WHERE id=$1
+  `,
+      [id]
+    );
+    return response.rows[0];
+  } catch (error) {
+    throw error;
+  }
+}
+module.exports = { createUser, getUserByUsername, getUser, getUserById };

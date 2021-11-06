@@ -2,9 +2,10 @@ const {
   client,
   createUser,
   createProduct,
-  getAllUsers,
+  getUsers,
   createOrders,
   createProductOrders,
+  getUserById
 } = require("./");
 const { createReview } = require("./reviews");
 

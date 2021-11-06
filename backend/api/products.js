@@ -1,6 +1,5 @@
 const productsRouter = require("express").Router();
-const getProductsRouter = require("express").Router();
-const { getAllProducts, createProduct } = require("../db");
+const { getAllProducts, createProduct, updateProduct } = require("../db");
 const multer = require("multer");
 const upload = multer({ dest: "public/images" });
 
@@ -40,31 +39,20 @@ productsRouter.post("/", upload.single("image"), async (req, res) => {
 
 //UPDATE PRODUCT
 
-// productsRouter.patch("/products/:id", async (req, res) => {
-//   try {
-//     const {}
-//   } catch (error) {
-//     res.status(500).send({ error: "error" });
-//   }
-// });
-
-//image router
-
-productsRouter.post(
-  "/uploadJersey",
-  upload.single("image"),
-  async (req, res) => {
-    const response = await client.query(
-      `
-      INSERT INTO products (name, image) VALUES ($1, $2)
-      RETURNING *;
-      `,
-
-      [req.body.name, req.file.filename]
-    );
-    res.send({ data: response.rows[0] });
+productsRouter.patch("/products/:id", async (req, res) => {
+  try {
+    const { id, title, description, price, quantity } = req.body;
+    const updatedProduct = await updateProduct({
+      id: id,
+      title: title,
+      description: description,
+      price: price,
+      quantity: quantity,
+    });
+  } catch (error) {
+    res.status(500).send({ error: "error" });
   }
-);
+});
 
 productsRouter.get("/products", async (req, res) => {
   const response = await client.query(`
