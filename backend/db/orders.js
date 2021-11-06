@@ -1,5 +1,6 @@
 const { client } = require("./client");
 
+<<<<<<< HEAD
 const getProductById = async (id) => {
   try {
     const response = await client.query(
@@ -14,6 +15,9 @@ const getProductById = async (id) => {
 };
 
 async function createOrders({ user_id, status }) {
+=======
+async function createOrder({ user_id, status }) {
+>>>>>>> 48716e98192b395ae4fc70f91b728103444d0303
   try {
     const {
       rows: [order],
@@ -59,6 +63,7 @@ async function getOrdersByUser(userId) {
     throw error;
   }
 }
+<<<<<<< HEAD
 async function getProductOrdersByProduct(productTitle) {
   try {
     const { rows: productId } = await client.query(
@@ -100,3 +105,7 @@ module.exports = {
   destroyOrderById,
   getAllOrders,
 };
+=======
+
+module.exports = { createOrder, getOrdersByUser };
+>>>>>>> 48716e98192b395ae4fc70f91b728103444d0303

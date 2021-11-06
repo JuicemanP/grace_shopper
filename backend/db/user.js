@@ -1,5 +1,6 @@
 const { client } = require("./client");
 const bcrypt = require("bcrypt");
+
 async function createUser({ email, username, password }) {
   const hashPassword = await bcrypt.hash(password, 10);
   try {
@@ -18,24 +19,37 @@ async function createUser({ email, username, password }) {
     throw error;
   }
 }
-async function getAllUsers({ username, email,password }) {
+
+async function getUserByUsername({ username }) {
   try {
     const response = await client.query(
       `
         SELECT * FROM users
-        WHERE username =$1 OR email =$2;
+        WHERE username =$1;
       `,
-      [username, email]
+      [username]
     );
-    console.log("HERE");
     const user = response.rows[0];
-    console.log(user);
-    if (await bcrypt.compare(password, user.password)) {
-      delete user.password;
-      return user;
-    }
+    return user;
   } catch (error) {
     throw error;
   }
 }
-module.exports = { createUser, getAllUsers };
+
+const getUser = async ({ username, password }) => {
+  try {
+    const user = await getUserByUsername(username);
+    const hashedPassword = user.password;
+    const passwordsMatch = await bcrypt.compare(password, hashedPassword);
+    if (passwordsMatch) {
+      delete user.password;
+      return user;
+    } else {
+      throw "Passwords do not match!";
+    }
+  } catch (error) {
+    throw error;
+  }
+};
+
+module.exports = { createUser, getUserByUsername, getUser };
