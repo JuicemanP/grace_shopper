@@ -2,7 +2,7 @@ import { useState } from "react"
 import { Link } from "react-router-dom"
 import BASE_URL from "../BaseURL"
 import { useHistory } from "react-router"
-const Login = ()=>{
+const Login = (props)=>{
     
 const [username,setUsername]=useState("")
 const [password,setPassword]=useState("")
@@ -32,6 +32,7 @@ const handlesubmit= async (e)=>{
       }
       
       localStorage.setItem("token",info.token)
+      props.setToken(info.token);
      history.push("/")
     }
 

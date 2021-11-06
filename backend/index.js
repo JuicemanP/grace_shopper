@@ -5,6 +5,8 @@ const express = require("express");
 const server = express();
 const cors = require("cors");
 
+const jwt = require("jsonwebtoken");
+
 const apiRouter = require("./api");
 const { getUserByUsername } = require("./db/user");
 const multer = require("multer");
