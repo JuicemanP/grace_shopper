@@ -3,7 +3,7 @@ import { useState } from "react"
 import { Link } from "react-router-dom"
 import BASE_URL from "../BaseURL"
 import { useHistory } from "react-router"
-const Register = ()=>{
+const Register = (props)=>{
     const [email,setEmail]=useState("")
     const [username,setUsername]=useState("")
     const [password,setPassword]=useState("")
@@ -36,6 +36,7 @@ const Register = ()=>{
               return;
           }
           localStorage.setItem("token",info.token)
+          props.setToken(info.token);
          history.push("/")
         }
 

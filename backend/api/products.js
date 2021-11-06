@@ -40,13 +40,13 @@ productsRouter.post("/", upload.single("image"), async (req, res) => {
 
 //UPDATE PRODUCT
 
-productsRouter.patch("/products/:id", async (req, res) => {
-  try {
-    const {}
-  } catch (error) {
-    res.status(500).send({ error: "error" });
-  }
-});
+// productsRouter.patch("/products/:id", async (req, res) => {
+//   try {
+//     const {}
+//   } catch (error) {
+//     res.status(500).send({ error: "error" });
+//   }
+// });
 // productsRouter.get("/productorders", (req, res) => {
 //   try {
 //     const newProductOrders = products.map((product_orders) => {
