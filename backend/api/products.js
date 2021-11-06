@@ -3,7 +3,6 @@ const { getAllProducts, createProduct } = require("../db");
 const multer = require("multer");
 const upload = multer({ dest: "public/images" });
 
-
 //GET ALL PRODUCTS
 
 productsRouter.get("/", async (req, res) => {
@@ -29,7 +28,6 @@ productsRouter.post("/", upload.single("image"), async (req, res) => {
       quantity: quantity,
       image: req.file.filename,
       category_id: category_id,
-
     });
 
     return res.send(product);
@@ -40,7 +38,7 @@ productsRouter.post("/", upload.single("image"), async (req, res) => {
 
 //UPDATE PRODUCT
 
-productsRouter.patch("/products/:id", async (req, res) => {
+productsRouter.patch("/:id", async (req, res) => {
   try {
     const { id, title, description, price, quantity } = req.body;
     const updatedProduct = await updateProduct({
