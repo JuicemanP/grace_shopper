@@ -24,6 +24,7 @@ const createDB = async () => {
     CREATE TABLE categories(
         id SERIAL PRIMARY KEY,
         name VARCHAR(255) NOT NULL
+        
     );
     
     CREATE TABLE users (
@@ -43,10 +44,7 @@ const createDB = async () => {
     quantity INT NOT NULL,
     image VARCHAR (255),
     category_id INT REFERENCES categories(id)
-    
-
-
-    );
+  );
     
     CREATE TABLE orders(
         id SERIAL PRIMARY KEY,
@@ -102,7 +100,11 @@ async function createInitialReviews() {
 
 async function createCategories() {
   try {
-    const categories = [{ name: "gym" }, { name: "auto" }, { name: "home" }];
+    const categories = [
+      { name: "women" },
+      { name: "children" },
+      { name: "men" },
+    ];
     for (let category of categories) {
       await client.query(
         `
@@ -127,6 +129,7 @@ async function createInitialProducts() {
       price: 123,
       quantity: 456,
       category_id: 1,
+      image: "image",
     });
   } catch (error) {
     throw error;

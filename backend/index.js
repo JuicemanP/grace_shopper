@@ -4,7 +4,6 @@ const { client } = require("./db/client");
 const express = require("express");
 const server = express();
 const cors = require("cors");
-
 const jwt = require("jsonwebtoken");
 
 const apiRouter = require("./api");
@@ -18,12 +17,16 @@ server.use(async (req, res, next) => {
   const token = req.headers.authorization
     ? req.headers.authorization.split(" ")[1]
     : null;
+  console.log("token", token);
+  // if (!token) {
+  //   return next();
+  // }
 
   if (!token) {
     return next();
   }
   const decodedToken = jwt.verify(token, process.env.JWT_SECRET);
-  
+
   const user = await getUserById(decodedToken.id);
   delete user.password;
   req.user = user;
