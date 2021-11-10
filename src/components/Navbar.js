@@ -1,14 +1,27 @@
 import { Link } from "react-router-dom";
 
-const Navbar = () => {
+const Navbar = (props) => {
   return (
     <div>
-      <Link to="/"> Home </Link> ||
-      <Link to="/register"> Register</Link> ||
-      <Link to="/login"> Login</Link> ||
-      <Link to="/logout"> Logout</Link>||
-      <Link to="/shopping-cart">Shopping Cart</Link>||
-      <Link to="/products">Products</Link>||
+      <div className="dropdown">
+        <Link to="/"> Home </Link>
+        <div class="dropdown-content">
+          <Link>Categories</Link>
+          <div class="dropdown-content">
+            <Link>Men</Link>
+            <Link>Women</Link>
+            <Link>Children</Link>
+          </div>
+        </div>
+      </div>
+
+      <Link>
+        <input placeholder="Search..." />
+      </Link>
+      <Link>Cart</Link>
+      {!props.user && <Link to="/login"> Login</Link>}
+      {!props.user && <Link to="/register"> Register</Link>}
+      {props.user && <Link to="/logout"> Logout</Link>}
     </div>
   );
 };

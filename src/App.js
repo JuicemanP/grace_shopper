@@ -54,6 +54,9 @@ function App() {
       <Route path="/products">
         <Products />
       </Route>
+      <Route path="/products">
+        <Products />
+      </Route>
       <Route path="/logout">
         <Logout />
       </Route>
