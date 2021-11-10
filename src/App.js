@@ -6,8 +6,8 @@ import Home from "./components/Home";
 import Login from "./components/Login";
 import Logout from "./components/Logout";
 import Navbar from "./components/Navbar";
-import Register from "./components/Register";
 import Products from "./components/Products";
+import Register from "./components/Register";
 
 function App() {
   const [user, setUser] = useState(null);
