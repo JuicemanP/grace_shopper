@@ -47,4 +47,4 @@ async function getOrdersByUser(userId) {
   }
 }
 
-module.exports = { createOrder, getOrdersByUser };
+module.exports = { createOrder, getOrdersByUser, getAllOrders };

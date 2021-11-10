@@ -19,6 +19,7 @@ usersRouter.post("/register", async (req, res, next) => {
 });
 
 usersRouter.post("/login", async (req, res, next) => {
+  console.log("logging in!");
   const { username, password } = req.body;
 
   try {

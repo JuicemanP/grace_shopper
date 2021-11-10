@@ -31,7 +31,8 @@ const createDB = async () => {
      id SERIAL PRIMARY KEY,
      email VARCHAR(255) UNIQUE NOT NULL,
      username VARCHAR(255) UNIQUE NOT NULL,
-     password VARCHAR(255) NOT NULL  
+     password VARCHAR(255) NOT NULL,
+     admin BOOLEAN DEFAULT false  
     );
         
     CREATE TABLE products (
@@ -43,11 +44,7 @@ const createDB = async () => {
     quantity INT NOT NULL,
     image VARCHAR (255),
     category_id INT REFERENCES categories(id)
-
-    
-
-
-    );
+  );
     
     CREATE TABLE orders(
         id SERIAL PRIMARY KEY,
@@ -132,6 +129,7 @@ async function createInitialProducts() {
       price: 123,
       quantity: 456,
       category_id: 1,
+      image: "image",
     });
   } catch (error) {
     throw error;
