@@ -15,21 +15,25 @@ function App() {
 
   useEffect(() => {
     const fetchUser = async () => {
-      const token = localStorage.getItem("token");
+      const savedToken = localStorage.getItem("token");
 
-      if (!token) {
+      if (!savedToken) {
         return;
       }
 
       const resp = await fetch(`${BASE_URL}/users/me`, {
         headers: {
-          Authorization: `Bearer ${token}`,
+          Authorization: `Bearer ${savedToken}`,
         },
       });
 
       const info = await resp.json();
 
-      setUser({ id: info.user.id, username: info.user.username });
+      setUser({
+        id: info.user.id,
+        username: info.user.username,
+        admin: info.user.admin,
+      });
       setToken(info.token);
       localStorage.setItem("token", info.token);
     };
@@ -42,7 +46,7 @@ function App() {
         <Home user={user} />
       </Route>
       <Route path="/register">
-        <Register setToken={setToken} />
+        <Register setToken={setToken} setUser={setUser} />
       </Route>
       <Route path="/login">
         {!user && (
