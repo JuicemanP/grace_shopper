@@ -6,4 +6,4 @@ const client = new Client({
   password: process.env.POSTGRES_PASSWORD,
   database: "grace-shopper",
 });
-module.exports = {client};
+module.exports = { client };

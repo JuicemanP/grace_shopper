@@ -7,6 +7,7 @@ const upload = multer({ dest: "public/images" });
 
 productsRouter.get("/", async (req, res) => {
   try {
+    console.log("getting all products!");
     const products = await getAllProducts();
     return res.send(products);
   } catch (error) {
@@ -18,8 +19,10 @@ productsRouter.get("/", async (req, res) => {
 
 productsRouter.post("/", upload.single("image"), async (req, res) => {
   try {
+    console.log("creating a products!");
     const { user_id, title, description, price, quantity, category_id } =
       req.body;
+    console.log(typeof quantity);
     const product = await createProduct({
       user_id: user_id,
       title: title,
@@ -48,6 +51,7 @@ productsRouter.patch("/:id", async (req, res) => {
       price: price,
       quantity: quantity,
     });
+    return res.send(updatedProduct);
   } catch (error) {
     res.status(500).send({ error: "error" });
   }

@@ -13,6 +13,7 @@ async function createUser({ email, username, password }) {
       [email, username, hashPassword]
     );
     const user = response.rows[0];
+
     delete user.password;
     return user;
   } catch (error) {
