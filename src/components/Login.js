@@ -23,12 +23,21 @@ const Login = (props) => {
       }),
     });
     const info = await response.json();
+<<<<<<< HEAD
+
+    if (info.error) {
+      setErrorMessage(info.error);
+      return;
+    }
+    console.log(info);
+=======
 
     if (info.error) {
       setErrorMessage(info.error);
       return;
     }
 
+>>>>>>> main
     localStorage.setItem("token", info.token);
     props.setToken(info.token);
     history.push("/");

@@ -36,7 +36,11 @@ const Register = (props) => {
     }
     localStorage.setItem("token", info.token);
     props.setToken(info.token);
+<<<<<<< HEAD
+    history.push("/");
+=======
     history.push("/login");
+>>>>>>> main
   };
 
   return (
