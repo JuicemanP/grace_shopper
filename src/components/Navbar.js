@@ -1,28 +1,46 @@
 import { Link } from "react-router-dom";
+import "./Navbar.css";
+import React, { useState } from "react";
+import * as FaIcons from "react-icons/fa";
+import * as AiIcons from "react-icons/ai";
 
-const Navbar = (props) => {
+import { SidebarData } from "./SidebarData";
+
+import { IconContext } from "react-icons";
+
+const Navbar = () => {
+  const [sidebar, setSidebar] = useState(false);
+
+  const showSidebar = () => setSidebar(!sidebar);
   return (
-    <div>
-      <div className="dropdown">
-        <Link to="/"> Home </Link>
-        <div class="dropdown-content">
-          <Link>Categories</Link>
-          <div class="dropdown-content">
-            <Link>Men</Link>
-            <Link>Women</Link>
-            <Link>Children</Link>
-          </div>
+    <>
+      <IconContext.Provider value={{ color: "#fff" }}>
+        <div className="navbar">
+          <Link to="#" className="menu-bars">
+            <FaIcons.FaBars onClick={showSidebar} />
+          </Link>
         </div>
-      </div>
-
-      <Link>
-        <input placeholder="Search..." />
-      </Link>
-      <Link>Cart</Link>
-      {!props.user && <Link to="/login"> Login</Link>}
-      {!props.user && <Link to="/register"> Register</Link>}
-      {props.user && <Link to="/logout"> Logout</Link>}
-    </div>
+        <nav className={sidebar ? "nav-menu active" : "nav-menu"}>
+          <ul className="nav-menu-items" onClick={showSidebar}>
+            <li className="navbar-toggle">
+              <Link to="#" className="menu-bars">
+                <AiIcons.AiOutlineClose />
+              </Link>
+            </li>
+            {SidebarData.map((item, index) => {
+              return (
+                <li key={index} className={item.cName}>
+                  <Link to={item.path}>
+                    {item.icon}
+                    <span>{item.title}</span>
+                  </Link>
+                </li>
+              );
+            })}
+          </ul>
+        </nav>
+      </IconContext.Provider>
+    </>
   );
 };
 
