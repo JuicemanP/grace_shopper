@@ -84,6 +84,7 @@ const Products = () => {
       {jerseys.map((jersey) => (
         <div>
           <img src={`/images/${jersey.image}`} />
+          {/* <img>{jersey.image}</img> */}
           <h3>{jersey.title}</h3>
           <h5>{jersey.price}</h5>
           <h5>{jersey.description}</h5>
