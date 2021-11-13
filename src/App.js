@@ -13,6 +13,7 @@ function App() {
   const [user, setUser] = useState(null);
   const [token, setToken] = useState(null);
   const [jerseys, setJerseys] = useState([]);
+  const [activeOrder, setActiveOrder] = useState({});
 
   const fetchJerseys = async () => {
     const response = await fetch(`${BASE_URL}/products`, {
@@ -87,6 +88,8 @@ function App() {
           setJerseys={setJerseys}
           fetchJerseys={fetchJerseys}
           user={user}
+          activeOrder={activeOrder}
+          setActiveOrder={setActiveOrder}
         />
       </Route>
     </div>
