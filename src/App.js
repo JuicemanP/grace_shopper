@@ -42,11 +42,16 @@ function App() {
         username: info.user.username,
         admin: info.user.admin,
       });
-      setToken(info.token);
-      localStorage.setItem("token", info.token);
+      setToken(savedToken);
+      // localStorage.setItem("token", info.token);
     };
     fetchUser();
     fetchJerseys();
+  }, []);
+
+  useEffect(() => {
+    // if local storage has a token
+    // set the token in state
   }, []);
   return (
     <div>

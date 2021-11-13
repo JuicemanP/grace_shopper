@@ -3,7 +3,9 @@ import { useHistory } from "react-router";
 
 const Navbar = (props) => {
   const { jerseys, setJerseys } = props;
+
   const history = useHistory();
+
   const handleLogout = () => {
     // console.log("HELLO THERE");
     props.setUser(null);
@@ -12,12 +14,13 @@ const Navbar = (props) => {
     window.location.reload();
     // console.log("GENERAL KENOBI");
   };
+
   return (
     <div>
       <div className="dropdown">
         <Link to="/"> Home </Link>
         <div class="dropdown-content">
-          <Link>Categories</Link>
+          <h2>Categories</h2>
           <div class="dropdown-content">
             <Link>Men</Link>
             <Link>Women</Link>
@@ -25,10 +28,7 @@ const Navbar = (props) => {
           </div>
         </div>
       </div>
-
-      <Link>
-        <input placeholder="Search..." />
-      </Link>
+     
       <Link to="/products">Shop Jerseys</Link>
       <Link to="/cart">My Cart</Link>
       {!props.user && <Link to="/login"> Login</Link>}

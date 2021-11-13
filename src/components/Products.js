@@ -10,7 +10,7 @@ const Products = (props) => {
   const [price, setPrice] = useState("");
   const [quantity, setQuantity] = useState("");
   const [category_id, setCategoryId] = useState("");
-
+  const [searchTerm,setSearchTerm]= useState("");
   //   console.log(info.data);
   useEffect(() => {
     fetchJerseys();
@@ -19,12 +19,23 @@ const Products = (props) => {
     <>
       {user && user.admin && <Link to="create_jersey">ADD NEW JERSEY</Link>}
       <div>
-        {jerseys.map((jersey) => {
+        <input 
+        type="text"
+        placeholder="Search..."
+        onChange={(e)=>{setSearchTerm(e.target.value)}}
+        />
+      </div>
+      <div>
+        {jerseys.filter((jersey)=>{
+          if(searchTerm ==""){
+            return jersey
+          }else if (jersey.title.toLowerCase().includes(searchTerm.toLowerCase()))
+          return jersey}).map((jersey) => {
           console.log(jersey);
 
           return (
             <div>
-              {jersey.image.slice(0, 4) == "https" ? (
+              {jersey.image.includes("https") ? (
                 <img className="thumbnail" src={jersey.image} />
               ) : (
                 <img className="thumbnail" src={`/images/${jersey.image}`} />
