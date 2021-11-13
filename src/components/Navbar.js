@@ -25,10 +25,7 @@ const Navbar = (props) => {
           </div>
         </div>
       </div>
-
-      <Link>
-        <input placeholder="Search..." />
-      </Link>
+     
       <Link to="/products">Shop Jerseys</Link>
       <Link to="/cart">My Cart</Link>
       {!props.user && <Link to="/login"> Login</Link>}
