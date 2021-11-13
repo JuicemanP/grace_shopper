@@ -20,7 +20,7 @@ const Navbar = (props) => {
       <div className="dropdown">
         <Link to="/"> Home </Link>
         <div class="dropdown-content">
-          <Link>Categories</Link>
+          <h2>Categories</h2>
           <div class="dropdown-content">
             <Link>Men</Link>
             <Link>Women</Link>
