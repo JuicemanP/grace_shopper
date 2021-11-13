@@ -24,7 +24,7 @@ const Products = (props) => {
 
           return (
             <div>
-              {jersey.image.slice(0, 4) == "https" ? (
+              {jersey.image.includes("https") ? (
                 <img className="thumbnail" src={jersey.image} />
               ) : (
                 <img className="thumbnail" src={`/images/${jersey.image}`} />
