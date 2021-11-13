@@ -1,10 +1,12 @@
 import { useState } from "react";
+import { useHistory } from "react-router";
 import { Link } from "react-router-dom";
 import BASE_URL from "../BaseURL";
-import { useHistory } from "react-router";
+
 const Login = (props) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const { setUser } = props;
 
   const [errorMessage, setErrorMessage] = useState("");
   const history = useHistory();
@@ -28,9 +30,10 @@ const Login = (props) => {
       setErrorMessage(info.error);
       return;
     }
-
+    console.log(info);
     localStorage.setItem("token", info.token);
     props.setToken(info.token);
+    setUser(info.user);
     history.push("/");
   };
 

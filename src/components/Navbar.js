@@ -1,17 +1,27 @@
-import { Link } from "react-router-dom";
-import "./Navbar.css";
 import React, { useState } from "react";
 import * as FaIcons from "react-icons/fa";
 import * as AiIcons from "react-icons/ai";
-
+import { Link } from "react-router-dom";
 import { SidebarData } from "./SidebarData";
-
+import "./Navbar.css";
 import { IconContext } from "react-icons";
 
-const Navbar = () => {
+import { useHistory } from "react-router";
+
+function Navbar(props) {
   const [sidebar, setSidebar] = useState(false);
 
   const showSidebar = () => setSidebar(!sidebar);
+  const { jerseys, setJerseys } = props;
+  const history = useHistory();
+  const handleLogout = () => {
+    // console.log("HELLO THERE");
+    props.setUser(null);
+    localStorage.removeItem("token");
+    history.push("/");
+    window.location.reload();
+  };
+  // console.log("GENERAL KENOBI");
   return (
     <>
       <IconContext.Provider value={{ color: "#fff" }}>
@@ -25,6 +35,9 @@ const Navbar = () => {
             <li className="navbar-toggle">
               <Link to="#" className="menu-bars">
                 <AiIcons.AiOutlineClose />
+              </Link>
+              <Link to="/" onClick={handleLogout}>
+                Logout
               </Link>
             </li>
             {SidebarData.map((item, index) => {
@@ -42,6 +55,6 @@ const Navbar = () => {
       </IconContext.Provider>
     </>
   );
-};
+}
 
 export default Navbar;

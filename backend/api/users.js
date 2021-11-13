@@ -12,7 +12,12 @@ usersRouter.post("/register", async (req, res, next) => {
       return res.status(404).send({ error: "Password is too short!" });
     }
     const user = await createUser({ email, username, password });
-    const token = res.send({ user: user });
+    delete user.password;
+    const token = jwt.sign(
+      { id: user.id, username, admin: user.admin },
+      JWT_SECRET
+    );
+    res.send({ token, user });
   } catch (error) {
     res.status(404).send({ error: "Username already exists!" });
   }
@@ -25,15 +30,15 @@ usersRouter.post("/login", async (req, res, next) => {
   try {
     const user = await getUser({ username, password });
     if (!user) {
-      res.send({
+      return res.send({
         message: "There is no user registered ",
       });
     } else {
       const token = jwt.sign(
-        { id: user.id, username: user.username },
+        { id: user.id, username: user.username, admin: user.admin },
         JWT_SECRET
       );
-      res.send({ message: "You're Logged In!", token, user: user });
+      return res.send({ message: "You're Logged In!", token, user: user });
     }
   } catch (error) {
     next(error);
