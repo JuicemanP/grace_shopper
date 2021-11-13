@@ -30,7 +30,7 @@ usersRouter.post("/login", async (req, res, next) => {
   try {
     const user = await getUser({ username, password });
     if (!user) {
-      res.send({
+      return res.send({
         message: "There is no user registered ",
       });
     } else {
@@ -38,7 +38,7 @@ usersRouter.post("/login", async (req, res, next) => {
         { id: user.id, username: user.username, admin: user.admin },
         JWT_SECRET
       );
-      res.send({ message: "You're Logged In!", token, user: user });
+      return res.send({ message: "You're Logged In!", token, user: user });
     }
   } catch (error) {
     next(error);
