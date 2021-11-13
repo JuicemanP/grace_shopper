@@ -7,7 +7,7 @@ const Navbar = (props)=>{
 <div className="dropdown">
 <Link to = "/"> Home </Link> 
     <div class="dropdown-content">
-    <Link>Categories</Link>
+    <div>Categories</div>
         <div class="dropdown-content">
         <Link>Men</Link>
         <Link>Women</Link>
@@ -17,7 +17,7 @@ const Navbar = (props)=>{
 </div>
 
 <Link>
-<input  placeholder="Search..."/>
+<input type="text" placeholder="Search..."/>
 </Link>
 <Link>Cart</Link>
 {!props.user && <Link to = "/login"> Login</Link>} 
