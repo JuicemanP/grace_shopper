@@ -173,18 +173,18 @@ const seedDB = async () => {
   try {
     client.connect();
     await createDB();
-    // await createInitialUser();
-    // console.log("Created User");
-    // await createCategories();
-    // console.log("Created Categories");
-    // await createInitialProducts();
-    // console.log("Created products");
-    // await createInitialOrder();
-    // console.log("Created Order");
-    // await createProductOrder();
-    // console.log("Created Product Order");
-    // await createInitialReviews();
-    // console.log("Created Reviews");
+    await createInitialUser();
+    console.log("Created User");
+    await createCategories();
+    console.log("Created Categories");
+    await createInitialProducts();
+    console.log("Created products");
+    await createInitialOrder();
+    console.log("Created Order");
+    await createProductOrder();
+    console.log("Created Product Order");
+    await createInitialReviews();
+    console.log("Created Reviews");
   } catch (error) {}
 };
 
