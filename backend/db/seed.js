@@ -7,10 +7,7 @@ const {
   createProductOrders,
   getUserById,
 } = require("./");
-
 const { createReview } = require("./reviews");
-
-const data = require("./data");
 
 const createDB = async () => {
   try {
@@ -104,7 +101,11 @@ async function createInitialReviews() {
 
 async function createCategories() {
   try {
-    const categories = [{ name: "men" }, { name: "women" }, { name: "youth" }];
+    const categories = [
+      { name: "women" },
+      { name: "children" },
+      { name: "men" },
+    ];
     for (let category of categories) {
       await client.query(
         `
@@ -119,29 +120,18 @@ async function createCategories() {
 }
 async function createInitialProducts() {
   try {
-    const products = data.products;
+    // const [user] = await getAllUsers();
+    // console.log(user);
 
-    products.forEach(async (product) => {
-      await createProduct({
-        user_id: product.user_id,
-        title: product.name,
-        description: product.description,
-        price: product.price,
-        quantity: 50,
-        category_id: product.category_id,
-        image: product.image,
-      });
+    await createProduct({
+      user_id: 1,
+      title: "Product",
+      description: "Product",
+      price: 123,
+      quantity: 456,
+      category_id: 1,
+      image: "image",
     });
-
-    // await createProduct({
-    //   user_id: 1,
-    //   title: "Product",
-    //   description: "Product",
-    //   price: 123,
-    //   quantity: 456,
-    //   category_id: 1,
-    //   image: "image",
-    // });
   } catch (error) {
     throw error;
   }
@@ -173,18 +163,18 @@ const seedDB = async () => {
   try {
     client.connect();
     await createDB();
-    // await createInitialUser();
-    // console.log("Created User");
-    // await createCategories();
-    // console.log("Created Categories");
-    // await createInitialProducts();
-    // console.log("Created products");
-    // await createInitialOrder();
-    // console.log("Created Order");
-    // await createProductOrder();
-    // console.log("Created Product Order");
-    // await createInitialReviews();
-    // console.log("Created Reviews");
+    await createInitialUser();
+    console.log("Created User");
+    await createCategories();
+    console.log("Created Categories");
+    await createInitialProducts();
+    console.log("Created products");
+    await createInitialOrder();
+    console.log("Created Order");
+    await createProductOrder();
+    console.log("Created Product Order");
+    await createInitialReviews();
+    console.log("Created Reviews");
   } catch (error) {}
 };
 
