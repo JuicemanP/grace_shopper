@@ -8,6 +8,7 @@ import Navbar from "./components/Navbar";
 import Products from "./components/Products";
 import Register from "./components/Register";
 import NewJersey from "./components/NewJersey";
+import Cart from "./components/Cart";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -91,6 +92,9 @@ function App() {
           activeOrder={activeOrder}
           setActiveOrder={setActiveOrder}
         />
+      </Route>
+      <Route>
+        <Cart/>
       </Route>
     </div>
   );
