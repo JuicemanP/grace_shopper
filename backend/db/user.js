@@ -1,21 +1,36 @@
 const { client } = require("./client");
 const bcrypt = require("bcrypt");
 
-async function createUser({ email, username, password }) {
+async function createUser({ email, username, password, admin }) {
   const hashPassword = await bcrypt.hash(password, 10);
   try {
-    const response = await client.query(
-      `
+    if (admin) {
+      const response = await client.query(
+        `
+      INSERT INTO users(email, username, password, admin)
+      VALUES($1, $2, $3, $4)
+      RETURNING *;
+      `,
+        [email, username, hashPassword, admin]
+      );
+      const user = response.rows[0];
+      delete user.password;
+      return user;
+    } else {
+      const response = await client.query(
+        `
         INSERT INTO users(email, username, password) 
         VALUES($1, $2, $3)
         RETURNING *;
       `,
-      [email, username, hashPassword]
-    );
-    const user = response.rows[0];
+        [email, username, hashPassword]
+      );
 
-    delete user.password;
-    return user;
+      const user = response.rows[0];
+
+      delete user.password;
+      return user;
+    }
   } catch (error) {
     throw error;
   }
