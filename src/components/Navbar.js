@@ -1,7 +1,17 @@
+import React, { useState } from "react";
+import * as FaIcons from "react-icons/fa";
+import * as AiIcons from "react-icons/ai";
 import { Link } from "react-router-dom";
+import { SidebarData } from "./SidebarData";
+import "./Navbar.css";
+import { IconContext } from "react-icons";
+
 import { useHistory } from "react-router";
 
-const Navbar = (props) => {
+function Navbar(props) {
+  const [sidebar, setSidebar] = useState(false);
+
+  const showSidebar = () => setSidebar(!sidebar);
   const { jerseys, setJerseys } = props;
 
   const history = useHistory();
@@ -12,34 +22,42 @@ const Navbar = (props) => {
     localStorage.removeItem("token");
     history.push("/");
     window.location.reload();
-    // console.log("GENERAL KENOBI");
   };
 
+  // console.log("GENERAL KENOBI");
   return (
-    <div>
-      <div className="dropdown">
-        <Link to="/"> Home </Link>
-        <div class="dropdown-content">
-          <h2>Categories</h2>
-          <div class="dropdown-content">
-            <Link>Men</Link>
-            <Link>Women</Link>
-            <Link>Children</Link>
-          </div>
+    <>
+      <IconContext.Provider value={{ color: "#fff" }}>
+        <div className="navbar">
+          <Link to="#" className="menu-bars">
+            <FaIcons.FaBars onClick={showSidebar} />
+          </Link>
         </div>
-      </div>
-     
-      <Link to="/products">Shop Jerseys</Link>
-      <Link to="/cart">My Cart</Link>
-      {!props.user && <Link to="/login"> Login</Link>}
-      {!props.user && <Link to="/register"> Register</Link>}
-      {props.user && (
-        <Link to="/" onClick={handleLogout}>
-          Logout
-        </Link>
-      )}
-    </div>
+        <nav className={sidebar ? "nav-menu active" : "nav-menu"}>
+          <ul className="nav-menu-items" onClick={showSidebar}>
+            <li className="navbar-toggle">
+              <Link to="#" className="menu-bars">
+                <AiIcons.AiOutlineClose />
+              </Link>
+              <Link to="/" onClick={handleLogout}>
+                Logout
+              </Link>
+            </li>
+            {SidebarData.map((item, index) => {
+              return (
+                <li key={index} className={item.cName}>
+                  <Link to={item.path}>
+                    {item.icon}
+                    <span>{item.title}</span>
+                  </Link>
+                </li>
+              );
+            })}
+          </ul>
+        </nav>
+      </IconContext.Provider>
+    </>
   );
-};
+}
 
 export default Navbar;
