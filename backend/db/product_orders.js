@@ -16,6 +16,17 @@ const addProductToOrder = async ({ product_id, price, order_id, quantity }) => {
   }
 };
 
+const getAllProductOrders = async () => {
+  try {
+    const response = await client.query(`
+    SELECT * FROM product_orders;
+    `);
+    return response.rows;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
 const getProductOrderById = async (id) => {
   try {
     const response = await client.query(
@@ -113,4 +124,5 @@ module.exports = {
   getProductOrdersByProduct,
   updateProductOrder,
   canEditProductOrder,
+  getAllProductOrders,
 };
