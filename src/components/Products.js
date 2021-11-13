@@ -83,7 +83,7 @@ const Products = (props) => {
                   <img className="thumbnail" src={`/images/${jersey.image}`} />
                 )}
                 <h3>{jersey.title}</h3>
-                <h5>{jersey.price}</h5>
+                <h5>${jersey.price}</h5>
                 <h5>{jersey.description}</h5>
                 {jersey.category_id == 1 ? (
                   <h5>Men's Jersey</h5>
