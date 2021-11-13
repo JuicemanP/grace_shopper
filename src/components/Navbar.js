@@ -13,7 +13,9 @@ function Navbar(props) {
 
   const showSidebar = () => setSidebar(!sidebar);
   const { jerseys, setJerseys } = props;
+
   const history = useHistory();
+
   const handleLogout = () => {
     // console.log("HELLO THERE");
     props.setUser(null);
@@ -21,6 +23,7 @@ function Navbar(props) {
     history.push("/");
     window.location.reload();
   };
+
   // console.log("GENERAL KENOBI");
   return (
     <>
