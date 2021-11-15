@@ -2,7 +2,7 @@ const productOrdersRouter = require("express").Router();
 
 const {
   addProductToOrder,
-  getAllProductOrders,
+  getAllProductOrders
 } = require("../db/product_orders");
 
 //Add product to order:
@@ -32,5 +32,4 @@ productOrdersRouter.get("/", async (req, res) => {
     console.error(error);
   }
 });
-
-module.exports = productOrdersRouter;
+module.exports=productOrdersRouter

@@ -15,18 +15,26 @@ function App() {
   const [token, setToken] = useState(null);
   const [jerseys, setJerseys] = useState([]);
   const [activeOrder, setActiveOrder] = useState({});
+const [cartProducts,setCartProducts]=useState([])
 
   const fetchJerseys = async () => {
     const response = await fetch(`${BASE_URL}/products`, {
       contentType: "application/json",
-      // contentType: "text/plain",
     });
     const info = await response.json();
-    // const info = [];
+
     console.log(info, "info");
     setJerseys(info);
   };
 
+  const fetchCartProducts = async () => {
+    const response = await fetch(`${BASE_URL}/productorders`, {
+      contentType: "application/json",
+    });
+    const info = await response.json();
+    console.log(info, "info");
+    setCartProducts(info);
+  };
   useEffect(() => {
     const fetchUser = async () => {
       const savedToken = localStorage.getItem("token");
@@ -45,15 +53,11 @@ function App() {
         admin: info.user.admin,
       });
       setToken(savedToken);
-      // localStorage.setItem("token", info.token);
+      
     };
     fetchUser();
     fetchJerseys();
-  }, []);
-
-  useEffect(() => {
-    // if local storage has a token
-    // set the token in state
+    fetchCartProducts()
   }, []);
   return (
     <div>
@@ -94,7 +98,11 @@ function App() {
         />
       </Route>
       <Route path="/cart">
-        <Cart />
+        <Cart activeOrder={activeOrder}
+        setActiveOrder={setActiveOrder}
+        cartProducts={cartProducts}
+        setCartProducts={setCartProducts}
+        />
       </Route>
     </div>
   );
