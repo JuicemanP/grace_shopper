@@ -9,20 +9,23 @@ const [userProduct,setUserProduct]=useState({})
 const [quantity, setQuantity] = useState(0);
 
 useEffect(()=>{
- 
+ fetchCartProducts()
 },[]);
   
 console.log(cartProducts)
- 
+
   const sum =cartProducts.reduce((partial_sum, product) => partial_sum + parseFloat(product.cartprice ) * parseFloat(product.cartquantity), 0);
   return <div >
     <div>
 <div>
  Items:
- <div>
+ 
+ <div >
+   
    {cartProducts.map((product)=>{
-return(<div>
-    <div>
+return(<div className="jersey-columns">
+  
+    <div >
     {product.image.includes("https") ? (
                   <img className="thumbnail" src={product.image} />
                 ) : (
@@ -37,6 +40,7 @@ return(<div>
   </div>
 <div
 ><h3>Quantity: {product.cartquantity}</h3>
+
 </div>
 </div>)
    })}
@@ -44,14 +48,17 @@ return(<div>
       Subtotal: ${sum}
     </div>
     <div>
-      <button>Checkout</button>
+      <button >Checkout</button>
     </div>
       </div>
+      
 <div>
 
 </div>
+
 </div>
     </div>
+    
   </div>
 }
 export default Cart;

@@ -81,3 +81,13 @@ a:hover, a:active {
   margin: 5px
  
 }
+
+.thumbnail{
+  max-width: 35vw;
+  max-height: 35vh;
+}
+.jersey-columns{
+  border: solid 2px black;
+  max-height: 60vh;
+  max-width: 40vw;
+}
