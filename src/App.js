@@ -93,8 +93,8 @@ function App() {
           setActiveOrder={setActiveOrder}
         />
       </Route>
-      <Route>
-        <Cart/>
+      <Route path="/cart">
+        <Cart />
       </Route>
     </div>
   );

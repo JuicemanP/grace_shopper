@@ -1,6 +1,6 @@
 const { client } = require("./client");
 
-async function createOrder({ user_id, status }) {
+async function createOrders({ user_id, status }) {
   try {
     const {
       rows: [order],
@@ -47,4 +47,4 @@ async function getOrdersByUser(userId) {
   }
 }
 
-module.exports = { createOrder, getOrdersByUser, getAllOrders };
+module.exports = { createOrders, getOrdersByUser, getAllOrders };
