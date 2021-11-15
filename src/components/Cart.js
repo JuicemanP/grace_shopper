@@ -2,12 +2,14 @@ import { useEffect, useState } from "react";
 
 const Cart = (props) => {
   const{activeOrder,jerseys,setActiveOrder,
-    cartProducts,setCartProducts}=props
+    cartProducts,setCartProducts,fetchCartProducts
+  ,checkForCart}=props
   console.log(activeOrder)
 const [userProduct,setUserProduct]=useState({})
 const [quantity, setQuantity] = useState(0);
 
 useEffect(()=>{
+ 
 },[]);
   
 console.log(cartProducts)

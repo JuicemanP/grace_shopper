@@ -68,7 +68,7 @@ const createDB = async () => {
         cartprice DECIMAL NOT NULL,
         order_id INT REFERENCES orders(id),
         cartquantity INT NOT NULL,
-        user_id INT REFERENCES users(id)
+        cartuser_id INT REFERENCES users(id)
     );
         `
     );

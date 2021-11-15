@@ -74,8 +74,7 @@ const [cartProducts,setCartProducts]=useState([])
     };
     fetchUser();
     fetchJerseys();
-    checkForCart();
-    fetchCartProducts();
+    checkForCart()
   }, []);
 
 
@@ -122,6 +121,8 @@ const [cartProducts,setCartProducts]=useState([])
         setActiveOrder={setActiveOrder}
         cartProducts={cartProducts}
         setCartProducts={setCartProducts}
+       fetchCartProducts={fetchCartProducts}
+       checkForCart={checkForCart}
         />
       </Route>
     </div>

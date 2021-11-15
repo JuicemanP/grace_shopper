@@ -25,7 +25,8 @@ const Products = (props) => {
   }, []);
 
   const addToCart = async ({ product_id, price, quantity }) => {
-    const orders = await fetch(`${BASE_URL}/orders/${user.id}/orders`);
+    const response = await fetch(`${BASE_URL}/orders/${user.id}/orders`);
+    const orders= await response.json()
     const cartOrder = orders.filter((order) => {
       return order.status == "pending";
     });
