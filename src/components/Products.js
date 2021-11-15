@@ -15,15 +15,17 @@ const Products = (props) => {
   const [image, setImage] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
-  const [quantity, setQuantity] = useState("");
+  const [quantity, setQuantity] = useState(1);
   const [category_id, setCategoryId] = useState("");
   const [searchTerm, setSearchTerm] = useState("");
+  const [product,setProduct]=useState("")
   //   console.log(info.data);
   useEffect(() => {
     fetchJerseys();
   }, []);
 
-  const addToCart = async ({ product_id, price }) => {
+  const addToCart = async ({ product_id, price, quantity }) => {
+ 
     if (!activeOrder.id) {
       const response = await fetch(`${BASE_URL}/orders`, {
         method: "POST",
@@ -48,6 +50,9 @@ const Products = (props) => {
         quantity: quantity,
       }),
     });
+    const productOrder= await resp.json()
+    console.log(productOrder)
+    setActiveOrder(productOrder)
   };
 
   return (
@@ -73,7 +78,7 @@ const Products = (props) => {
               return jersey;
           })
           .map((jersey) => {
-            console.log(jersey);
+          
 
             return (
               <div>
