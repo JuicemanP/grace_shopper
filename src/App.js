@@ -15,16 +15,26 @@ function App() {
   const [token, setToken] = useState(null);
   const [jerseys, setJerseys] = useState([]);
   const [activeOrder, setActiveOrder] = useState({});
+const [cartProducts,setCartProducts]=useState([])
 
   const fetchJerseys = async () => {
     const response = await fetch(`${BASE_URL}/products`, {
       contentType: "application/json",
-      // contentType: "text/plain",
     });
     const info = await response.json();
-    // const info = [];
+
     console.log(info, "info");
     setJerseys(info);
+  };
+
+
+  const fetchCartProducts = async () => {
+    const response = await fetch(`${BASE_URL}/productorders`, {
+      contentType: "application/json",
+    });
+    const info = await response.json();
+    console.log(info, "info");
+    setCartProducts(info);
   };
 
   const checkForCart = async () => {
@@ -40,6 +50,7 @@ function App() {
       return;
     }
   };
+
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -59,12 +70,14 @@ function App() {
         admin: info.user.admin,
       });
       setToken(savedToken);
-      // localStorage.setItem("token", info.token);
+      
     };
     fetchUser();
     fetchJerseys();
     checkForCart();
+    fetchCartProducts();
   }, []);
+
 
   return (
     <div>
@@ -105,7 +118,11 @@ function App() {
         />
       </Route>
       <Route path="/cart">
-        <Cart />
+        <Cart activeOrder={activeOrder}
+        setActiveOrder={setActiveOrder}
+        cartProducts={cartProducts}
+        setCartProducts={setCartProducts}
+        />
       </Route>
     </div>
   );

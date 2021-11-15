@@ -65,9 +65,9 @@ const createDB = async () => {
     CREATE TABLE product_orders(
         id SERIAL PRIMARY KEY,
         product_id INT REFERENCES products(id),
-        price DECIMAL NOT NULL,
+        cartprice DECIMAL NOT NULL,
         order_id INT REFERENCES orders(id),
-        quantity INT NOT NULL
+        cartquantity INT NOT NULL,
         user_id INT REFERENCES users(id)
     );
         `
@@ -162,9 +162,9 @@ async function createProductOrder() {
   try {
     await createProductOrders({
       product_id: 1,
-      price: 100.0,
+      cartprice: 100.0,
       order_id: 1,
-      quantity: 10,
+      cartquantity: 10,
     });
   } catch (error) {
     throw "No Product Order";

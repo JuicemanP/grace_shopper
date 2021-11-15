@@ -39,7 +39,7 @@ ordersRouter.get("/:userid/orders", async (req, res) => {
 ordersRouter.get("/:userid/products", async (req, res) => {
   try {
     const userId = req.params.userid;
-    console.log("HI");
+
     const products = await getProductById(userId);
     res.send(products);
   } catch (error) {

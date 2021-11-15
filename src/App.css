@@ -5,7 +5,7 @@
   justify-content: center;
 }
 a:link, a:visited {
-  background-color:  #99ddff;
+  background-color:  #3377ff;
   color: white;
   padding: 14px 25px;
   text-align: center;
@@ -15,13 +15,13 @@ a:link, a:visited {
 }
 
 a:hover, a:active {
-  background-color: red;
+  background-color: #99bbff;
 }
 
 .button {
   display: inline-block;
   border-radius: 4px;
-  background-color:  #99ddff;
+  background-color:  #768085;
   border: none;
   color:white;
   text-align: center;
