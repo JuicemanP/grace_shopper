@@ -27,6 +27,7 @@ const [cartProducts,setCartProducts]=useState([])
     setJerseys(info);
   };
 
+
   const fetchCartProducts = async () => {
     const response = await fetch(`${BASE_URL}/productorders`, {
       contentType: "application/json",
@@ -35,6 +36,22 @@ const [cartProducts,setCartProducts]=useState([])
     console.log(info, "info");
     setCartProducts(info);
   };
+
+  const checkForCart = async () => {
+    if (user) {
+      const orders = await fetch(`${BASE_URL}/orders/${user.id}/orders`);
+      const cartOrder = orders.filter((order) => {
+        return order.status == "pending";
+      });
+      if (cartOrder.length > 0) {
+        return setActiveOrder(cartOrder[0]);
+      }
+    } else {
+      return;
+    }
+  };
+
+
   useEffect(() => {
     const fetchUser = async () => {
       const savedToken = localStorage.getItem("token");
@@ -57,8 +74,11 @@ const [cartProducts,setCartProducts]=useState([])
     };
     fetchUser();
     fetchJerseys();
-    fetchCartProducts()
+    checkForCart();
+    fetchCartProducts();
   }, []);
+
+
   return (
     <div>
       <Navbar
