@@ -17,6 +17,7 @@ const Navbar = (props) => {
 
   return (
     <div>
+      <header>
       <div className="dropdown">
         <Link to="/"> Home </Link>
         <div class="dropdown-content">
@@ -38,6 +39,8 @@ const Navbar = (props) => {
           Logout
         </Link>
       )}
+      </header>
+      
     </div>
   );
 };

@@ -74,7 +74,7 @@ const [cartProducts,setCartProducts]=useState([])
     };
     fetchUser();
     fetchJerseys();
-    checkForCart()
+    
   }, []);
 
 

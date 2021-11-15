@@ -64,7 +64,7 @@ const Products = (props) => {
   return (
     <>
       {user && user.admin && <Link to="create_jersey">ADD NEW JERSEY</Link>}
-      <div>
+      <div >
         <input
           type="text"
           placeholder="Search..."
@@ -73,7 +73,8 @@ const Products = (props) => {
           }}
         />
       </div>
-      <div>
+      
+      <div >
         {jerseys
           .filter((jersey) => {
             if (searchTerm == "") {
@@ -85,7 +86,7 @@ const Products = (props) => {
           })
           .map((jersey) => {
             return (
-              <div>
+              <div className="jersey-columns">
                 {jersey.image.includes("https") ? (
                   <img className="thumbnail" src={jersey.image} />
                 ) : (
@@ -135,6 +136,9 @@ const Products = (props) => {
             );
           })}
       </div>
+      
+      
+      
     </>
   );
 };
