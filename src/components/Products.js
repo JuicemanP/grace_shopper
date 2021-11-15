@@ -18,15 +18,20 @@ const Products = (props) => {
   const [quantity, setQuantity] = useState(1);
   const [category_id, setCategoryId] = useState("");
   const [searchTerm, setSearchTerm] = useState("");
-  const [product,setProduct]=useState("")
+  const [product, setProduct] = useState("");
   //   console.log(info.data);
   useEffect(() => {
     fetchJerseys();
   }, []);
 
   const addToCart = async ({ product_id, price, quantity }) => {
- 
-    if (!activeOrder.id) {
+    const orders = await fetch(`${BASE_URL}/orders/${user.id}/orders`);
+    const cartOrder = orders.filter((order) => {
+      return order.status == "pending";
+    });
+    if (cartOrder.length > 0) {
+      setActiveOrder(cartOrder[0]);
+    } else {
       const response = await fetch(`${BASE_URL}/orders`, {
         method: "POST",
         headers: {
@@ -50,9 +55,9 @@ const Products = (props) => {
         quantity: quantity,
       }),
     });
-    const productOrder= await resp.json()
-    console.log(productOrder)
-    setActiveOrder(productOrder)
+    const productOrder = await resp.json();
+    console.log(productOrder);
+    setActiveOrder(productOrder);
   };
 
   return (
@@ -78,8 +83,6 @@ const Products = (props) => {
               return jersey;
           })
           .map((jersey) => {
-          
-
             return (
               <div>
                 {jersey.image.includes("https") ? (
