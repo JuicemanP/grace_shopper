@@ -74,7 +74,7 @@ const Products = (props) => {
         />
       </div>
       
-      <div >
+      <div className="jersey-grid">
         {jerseys
           .filter((jersey) => {
             if (searchTerm == "") {
