@@ -7,7 +7,10 @@ const {
   createProductOrders,
   getUserById,
 } = require("./");
+
 const { createReview } = require("./reviews");
+
+const data = require("./data");
 
 const createDB = async () => {
   try {
@@ -101,11 +104,7 @@ async function createInitialReviews() {
 
 async function createCategories() {
   try {
-    const categories = [
-      { name: "women" },
-      { name: "children" },
-      { name: "men" },
-    ];
+    const categories = [{ name: "men" }, { name: "women" }, { name: "youth" }];
     for (let category of categories) {
       await client.query(
         `
@@ -120,18 +119,29 @@ async function createCategories() {
 }
 async function createInitialProducts() {
   try {
-    // const [user] = await getAllUsers();
-    // console.log(user);
+    const products = data.products;
 
-    await createProduct({
-      user_id: 1,
-      title: "Product",
-      description: "Product",
-      price: 123,
-      quantity: 456,
-      category_id: 1,
-      image: "image",
+    products.forEach(async (product) => {
+      await createProduct({
+        user_id: product.user_id,
+        title: product.name,
+        description: product.description,
+        price: product.price,
+        quantity: 50,
+        category_id: product.category_id,
+        image: product.image,
+      });
     });
+
+    // await createProduct({
+    //   user_id: 1,
+    //   title: "Product",
+    //   description: "Product",
+    //   price: 123,
+    //   quantity: 456,
+    //   category_id: 1,
+    //   image: "image",
+    // });
   } catch (error) {
     throw error;
   }
