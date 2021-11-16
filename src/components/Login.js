@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useHistory } from "react-router";
 import { Link } from "react-router-dom";
 import BASE_URL from "../BaseURL";
-
+import "./Form.css";
 const Login = (props) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -39,10 +39,10 @@ const Login = (props) => {
 
   return (
     <div>
-      <form onSubmit={handlesubmit}>
+      <form onSubmit={handlesubmit} className="form">
         <div>
           <label />
-          Username:
+          Username*
           <div>
             <input
               type="text"
@@ -54,7 +54,7 @@ const Login = (props) => {
         </div>
         <div>
           <label />
-          Password:
+          Password*
           <div>
             <input
               type="password"

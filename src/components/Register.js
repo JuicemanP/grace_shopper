@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import BASE_URL from "../BaseURL";
 import { useHistory } from "react-router";
+import "./Form.css";
 const Register = (props) => {
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
@@ -41,10 +42,10 @@ const Register = (props) => {
 
   return (
     <div>
-      <form onSubmit={handlesubmit}>
+      <form onSubmit={handlesubmit} className="form">
         <div>
           <label />
-          Email:
+          Email*
           <div>
             <input
               type="text"
@@ -56,7 +57,7 @@ const Register = (props) => {
         </div>
         <div>
           <label />
-          Username:
+          Username*
           <div>
             <input
               type="text"
@@ -68,7 +69,7 @@ const Register = (props) => {
         </div>
         <div>
           <label />
-          Password:
+          Password*
           <div>
             <input
               type="password"
@@ -81,7 +82,7 @@ const Register = (props) => {
         </div>
         <div>
           <label />
-          Confirm Password:
+          Confirm Password*
           <div>
             <input
               type="password"
