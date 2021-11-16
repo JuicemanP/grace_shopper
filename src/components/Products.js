@@ -74,6 +74,7 @@ const Products = (props) => {
         />
       </div>
 
+
       <div className="jerseyGrid">
         {jerseys
           .filter((jersey) => {
