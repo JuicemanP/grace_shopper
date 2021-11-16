@@ -26,7 +26,7 @@ const Products = (props) => {
 
   const addToCart = async ({ product_id, price, quantity }) => {
     const response = await fetch(`${BASE_URL}/orders/${user.id}/orders`);
-    const orders= await response.json()
+    const orders = await response.json();
     const cartOrder = orders.filter((order) => {
       return order.status == "pending";
     });
@@ -64,7 +64,7 @@ const Products = (props) => {
   return (
     <>
       {user && user.admin && <Link to="create_jersey">ADD NEW JERSEY</Link>}
-      <div >
+      <div>
         <input
           type="text"
           placeholder="Search..."
@@ -73,8 +73,9 @@ const Products = (props) => {
           }}
         />
       </div>
-      
-      <div className="jersey-grid">
+
+
+      <div className="jerseyGrid">
         {jerseys
           .filter((jersey) => {
             if (searchTerm == "") {
@@ -92,8 +93,8 @@ const Products = (props) => {
                 ) : (
                   <img className="thumbnail" src={`/images/${jersey.image}`} />
                 )}
-                <h3>{jersey.title}</h3>
-                <h5>${jersey.price}</h5>
+                <h2>{jersey.title}</h2>
+                <h3>${jersey.price}</h3>
                 <h5>{jersey.description}</h5>
                 {jersey.category_id == 1 ? (
                   <h5>Men's Jersey</h5>
@@ -104,30 +105,36 @@ const Products = (props) => {
                 )}
                 {jersey.quantity > 0 ? (
                   <>
-                    <p>Choose Quantity– {jersey.quantity} remaining:</p>
-                    <select
-                      value={quantity}
-                      onChange={(e) => {
-                        setQuantity(e.target.value);
-                      }}
-                    >
-                      {Array(jersey.quantity)
-                        .fill("")
-                        .map((nonsense, index) => {
-                          return <option value={index + 1}>{index + 1}</option>;
-                        })}
-                    </select>
-                    <button
-                      onClick={() => {
-                        addToCart({
-                          product_id: jersey.id,
-                          price: jersey.price,
-                          quantity: quantity,
-                        });
-                      }}
-                    >
-                      Add to cart!
-                    </button>
+                    <div>
+                      <p>Choose Quantity– {jersey.quantity} remaining:</p>
+                      <select
+                        className="quantity"
+                        value={quantity}
+                        onChange={(e) => {
+                          setQuantity(e.target.value);
+                        }}
+                      >
+                        {Array(jersey.quantity)
+                          .fill("")
+                          .map((nonsense, index) => {
+                            return (
+                              <option value={index + 1}>{index + 1}</option>
+                            );
+                          })}
+                      </select>
+                      <button
+                        className="addCart"
+                        onClick={() => {
+                          addToCart({
+                            product_id: jersey.id,
+                            price: jersey.price,
+                            quantity: quantity,
+                          });
+                        }}
+                      >
+                        Add to cart!
+                      </button>
+                    </div>
                   </>
                 ) : (
                   <p>SOLD OUT</p>
@@ -136,9 +143,6 @@ const Products = (props) => {
             );
           })}
       </div>
-      
-      
-      
     </>
   );
 };

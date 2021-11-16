@@ -6,3 +6,45 @@
   justify-content: center;
 }
 
+.thumbnail {
+  max-width: 35vw;
+  max-height: 35vh;
+}
+
+.jerseyGrid {
+  border: solid 4px black;
+  text-align: center;
+}
+.jersey-columns {
+  border: solid 2px black;
+  width: 33%;
+  float: left;
+  background: linear-gradient(45deg, lightskyblue, transparent);
+}
+
+.thumbnail:hover {
+  transform: scale(1.25);
+  border-radius: 50%;
+}
+
+.addCart:hover {
+  cursor: crosshair;
+  background-color: red;
+  color: white;
+}
+
+.addCart {
+  height: 45px;
+  width: 100px;
+  background: navy;
+  color: white;
+}
+
+.quantity {
+  height: 45px;
+  width: 45px;
+  background-color: lightblue;
+}
+
+
+

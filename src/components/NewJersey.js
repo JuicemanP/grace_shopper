@@ -64,6 +64,14 @@ const NewJersey = (props) => {
               placeholder="M/F/Y"
               value={category_id}
               onChange={(e) => setCategoryId(e.target.value)}
+<<<<<<< HEAD
+            /> */}
+            <select name="selectList" id="selectList">
+                <option value={category_id[1]}>Men</option> {" "}
+              <option value={category_id[2]}>Women</option> {" "}
+              <option value={category_id[3]}>Youth</option>
+            </select>
+=======
             />  */}
             <span>Category:</span>
             <select name="selectList" id="selectList">
@@ -72,6 +80,7 @@ const NewJersey = (props) => {
               <option value={category_id[3]}>Youth</option>
             </select>
 
+>>>>>>> f60b9a0889b48bbfe97dde50e4d861e6c69cd452
             <input type="file" onChange={(e) => setImage(e.target.files[0])} />
             <button>Add jersey!</button>
           </form>
