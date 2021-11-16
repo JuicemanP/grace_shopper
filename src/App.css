@@ -4,26 +4,28 @@
   flex-direction: column;
   justify-content: center;
 }
-a:link, a:visited {
-  background-color:  #99ddff;
+a:link,
+a:visited {
+  background-color: #3377ff;
   color: white;
   padding: 14px 25px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  border: solid black 1px
+  border: solid black 1px;
 }
 
-a:hover, a:active {
-  background-color: red;
+a:hover,
+a:active {
+  background-color: #99bbff;
 }
 
 .button {
   display: inline-block;
   border-radius: 4px;
-  background-color:  #99ddff;
+  background-color: #768085;
   border: none;
-  color:white;
+  color: white;
   text-align: center;
   font-size: 28px;
   padding: 20px;
@@ -41,7 +43,7 @@ a:hover, a:active {
 }
 
 .button span:after {
-  content: '\00bb';
+  content: "\00bb";
   position: absolute;
   opacity: 0;
   top: 0;
@@ -68,7 +70,7 @@ a:hover, a:active {
   position: absolute;
   background-color: #f9f9f9;
   min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   padding: 12px 16px;
   z-index: 1;
 }
@@ -76,8 +78,47 @@ a:hover, a:active {
 .dropdown:hover .dropdown-content {
   display: block;
 }
-.routineBox{
+.routineBox {
   border: 3px solid black;
-  margin: 5px
- 
+  margin: 5px;
+}
+
+.thumbnail {
+  max-width: 35vw;
+  max-height: 35vh;
+}
+
+.jerseyGrid {
+  border: solid 4px black;
+  text-align: center;
+}
+.jersey-columns {
+  border: solid 2px black;
+  width: 33%;
+  float: left;
+  background: linear-gradient(45deg, lightskyblue, transparent);
+}
+
+.thumbnail:hover {
+  transform: scale(1.25);
+  border-radius: 50%;
+}
+
+.addCart:hover {
+  cursor: crosshair;
+  background-color: red;
+  color: white;
+}
+
+.addCart {
+  height: 45px;
+  width: 100px;
+  background: navy;
+  color: white;
+}
+
+.quantity {
+  height: 45px;
+  width: 45px;
+  background-color: lightblue;
 }

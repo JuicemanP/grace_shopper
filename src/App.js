@@ -8,22 +8,49 @@ import Navbar from "./components/Navbar";
 import Products from "./components/Products";
 import Register from "./components/Register";
 import NewJersey from "./components/NewJersey";
+import Cart from "./components/Cart";
 
 function App() {
   const [user, setUser] = useState(null);
   const [token, setToken] = useState(null);
   const [jerseys, setJerseys] = useState([]);
+  const [activeOrder, setActiveOrder] = useState({});
+const [cartProducts,setCartProducts]=useState([])
 
   const fetchJerseys = async () => {
     const response = await fetch(`${BASE_URL}/products`, {
       contentType: "application/json",
-      // contentType: "text/plain",
     });
     const info = await response.json();
-    // const info = [];
+
     console.log(info, "info");
     setJerseys(info);
   };
+
+
+  const fetchCartProducts = async () => {
+    const response = await fetch(`${BASE_URL}/productorders`, {
+      contentType: "application/json",
+    });
+    const info = await response.json();
+    console.log(info, "info");
+    setCartProducts(info);
+  };
+
+  const checkForCart = async () => {
+    if (user) {
+      const orders = await fetch(`${BASE_URL}/orders/${user.id}/orders`);
+      const cartOrder = orders.filter((order) => {
+        return order.status == "pending";
+      });
+      if (cartOrder.length > 0) {
+        return setActiveOrder(cartOrder[0]);
+      }
+    } else {
+      return;
+    }
+  };
+
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -43,16 +70,14 @@ function App() {
         admin: info.user.admin,
       });
       setToken(savedToken);
-      // localStorage.setItem("token", info.token);
+      
     };
     fetchUser();
     fetchJerseys();
+    
   }, []);
 
-  useEffect(() => {
-    // if local storage has a token
-    // set the token in state
-  }, []);
+
   return (
     <div>
       <Navbar
@@ -87,6 +112,17 @@ function App() {
           setJerseys={setJerseys}
           fetchJerseys={fetchJerseys}
           user={user}
+          activeOrder={activeOrder}
+          setActiveOrder={setActiveOrder}
+        />
+      </Route>
+      <Route path="/cart">
+        <Cart activeOrder={activeOrder}
+        setActiveOrder={setActiveOrder}
+        cartProducts={cartProducts}
+        setCartProducts={setCartProducts}
+       fetchCartProducts={fetchCartProducts}
+       checkForCart={checkForCart}
         />
       </Route>
     </div>

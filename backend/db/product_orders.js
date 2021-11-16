@@ -4,7 +4,7 @@ const addProductToOrder = async ({ product_id, price, order_id, quantity }) => {
   try {
     const response = await client.query(
       `
-      INSERT INTO product_orders (product_id, price, order_id, quantity)
+      INSERT INTO product_orders (product_id, cartprice, order_id, cartquantity)
       VALUES ($1, $2, $3, $4)
       RETURNING *;
       `,
@@ -15,6 +15,18 @@ const addProductToOrder = async ({ product_id, price, order_id, quantity }) => {
     throw error;
   }
 };
+
+const getAllProductOrders = async () => {
+  try {
+    const response = await client.query(`
+    SELECT * FROM product_orders JOIN products ON "product_id"= products.id;
+    `);
+    return response.rows;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
 
 const getProductOrderById = async (id) => {
   try {
@@ -113,4 +125,5 @@ module.exports = {
   getProductOrdersByProduct,
   updateProductOrder,
   canEditProductOrder,
+  getAllProductOrders,
 };
