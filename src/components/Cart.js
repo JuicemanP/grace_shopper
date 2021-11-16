@@ -18,7 +18,7 @@ console.log(cartProducts)
   return <div >
     <div>
 <div>
- Items:
+ <h2>Items:</h2>
  
  <div >
    

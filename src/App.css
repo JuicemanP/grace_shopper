@@ -12,7 +12,6 @@
 }
 
 .jerseyGrid {
-  border: solid 4px black;
   text-align: center;
 }
 .jersey-columns {
@@ -45,6 +44,13 @@
   width: 45px;
   background-color: lightblue;
 }
-
+.searchbar-div{
+  padding: 6px;
+}
+.product-searchbar{
+  height: 3vh;
+  width: 10vw;
+  font-size:2vh
+}
 
 
