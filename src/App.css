@@ -1,9 +1,12 @@
-
 #app {
   height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
+}
+
+body {
+  overflow: "hidden";
 }
 
 .thumbnail {
@@ -39,37 +42,54 @@
   color: white;
 }
 
+.category-select {
+  font-family: "Play", sans-serif;
+  color: navy;
+}
+
+.category {
+  text-decoration: underline;
+}
+
 .quantity {
   height: 45px;
   width: 45px;
   background-color: lightblue;
 }
-.searchbar-div{
+.searchbar-div {
   padding: 6px;
 }
+
+.product-searchbar {
+  height: 3vh;
+  width: 10vw;
+  font-size: 2vh;
+
 
 .product-searchbar{
   height: 3vh;
   width: 15vw;
   font-size:2vh
+
 }
-.subtotal{
+.subtotal {
   font-weight: bold;
 }
-.checkout-btn{
+.checkout-btn {
   font-weight: bold;
 }
-.form-contents{
-  background: rgba(0,0,0,0.5);
+.form-contents {
+  background: rgba(0, 0, 0, 0.5);
   margin: auto;
   width: 50%;
   padding: 10px;
   color: white;
 }
-.form-contents a{
+.form-contents a {
   color: white;
   font-weight: bold;
 }
+
 .input-container { 
   display: flex;
   width: 100%;
@@ -89,9 +109,10 @@
   outline: none;
 }
 .register-btn{
+
   font-weight: bold;
 }
-.login-btn{
+.login-btn {
   font-weight: bold;
 }
 .add-jersey:hover{
