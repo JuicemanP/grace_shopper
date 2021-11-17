@@ -5,7 +5,9 @@
   flex-direction: column;
   justify-content: center;
 }
-
+body{
+  overflow:'hidden'
+}
 .thumbnail {
   max-width: 35vw;
   max-height: 35vh;
@@ -74,7 +76,4 @@
 }
 .login-btn{
   font-weight: bold;
-}
-.backimg{
-  height: 100%;
 }
