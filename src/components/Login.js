@@ -50,10 +50,13 @@ const Login = (props) => {
       <form onSubmit={handlesubmit} >
         <div className="form-contents">
         <div >
+          
           <label />
           Username*
-          <div>
+          <div class="input-container">
+          <i class="fa fa-user icon"/>
             <input
+            class="input-field"
               type="text"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
@@ -64,8 +67,10 @@ const Login = (props) => {
         <div>
           <label />
           Password*
-          <div>
+          <div class="input-container">
+          <i class="fa fa-key icon"/>
             <input
+            class="input-field"
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}

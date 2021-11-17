@@ -5,9 +5,7 @@
   flex-direction: column;
   justify-content: center;
 }
-body{
-  overflow:'hidden'
-}
+
 .thumbnail {
   max-width: 35vw;
   max-height: 35vh;
@@ -49,9 +47,10 @@ body{
 .searchbar-div{
   padding: 6px;
 }
+
 .product-searchbar{
   height: 3vh;
-  width: 10vw;
+  width: 15vw;
   font-size:2vh
 }
 .subtotal{
@@ -71,9 +70,37 @@ body{
   color: white;
   font-weight: bold;
 }
+.input-container { 
+  display: flex;
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+.icon {
+  padding: 10px;
+  background: dodgerblue;
+  color: white;
+  min-width: 50px;
+  text-align: center;
+}
+.input-field {
+  width: 100%;
+  padding: 10px;
+  outline: none;
+}
 .register-btn{
   font-weight: bold;
 }
 .login-btn{
   font-weight: bold;
 }
+.add-jersey:hover{
+  border: 2px solid black;
+  padding: 10px;
+  width: 9%;
+}
+.add-jersey a{
+  color: black;
+  font-weight: bolder;
+}
+
