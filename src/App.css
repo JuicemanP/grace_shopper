@@ -62,15 +62,8 @@ body {
 
 .product-searchbar {
   height: 3vh;
-  width: 10vw;
-  font-size: 2vh;
-
-
-.product-searchbar{
-  height: 3vh;
   width: 15vw;
-  font-size:2vh
-
+  font-size: 2vh;
 }
 .subtotal {
   font-weight: bold;
@@ -90,7 +83,7 @@ body {
   font-weight: bold;
 }
 
-.input-container { 
+.input-container {
   display: flex;
   width: 100%;
   margin-bottom: 15px;
@@ -108,20 +101,18 @@ body {
   padding: 10px;
   outline: none;
 }
-.register-btn{
-
+.register-btn {
   font-weight: bold;
 }
 .login-btn {
   font-weight: bold;
 }
-.add-jersey:hover{
+.add-jersey:hover {
   border: 2px solid black;
   padding: 10px;
   width: 9%;
 }
-.add-jersey a{
+.add-jersey a {
   color: black;
   font-weight: bolder;
 }
-
