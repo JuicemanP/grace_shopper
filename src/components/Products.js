@@ -66,7 +66,7 @@ const Products = (props) => {
       {user && user.admin && <Link to="create_jersey">ADD NEW JERSEY</Link>}
       <div className="searchbar-div">
         <input
-        className="product-searchbar"
+          className="product-searchbar"
           type="text"
           placeholder="Search..."
           onChange={(e) => {
@@ -74,7 +74,6 @@ const Products = (props) => {
           }}
         />
       </div>
-
 
       <div className="jerseyGrid">
         {jerseys
@@ -104,7 +103,7 @@ const Products = (props) => {
                 ) : (
                   <h5>Youth Jersey</h5>
                 )}
-                {jersey.quantity > 0 ? (
+                {user && jersey.quantity > 0 ? (
                   <>
                     <div>
                       <p>Choose Quantity– {jersey.quantity} remaining:</p>
