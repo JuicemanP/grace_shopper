@@ -89,16 +89,20 @@ const Products = (props) => {
 
   return (
     <>
-      {user && user.admin && <Link to="create_jersey">ADD NEW JERSEY</Link>}
+      
       <div className="searchbar-div">
-        <input
+        <input 
           className="product-searchbar"
           type="text"
           placeholder="Search..."
           onChange={(e) => {
             setSearchTerm(e.target.value);
+            
           }}
         />
+        <div className="add-jersey">
+      {user && user.admin && <Link to="create_jersey">ADD NEW JERSEY</Link>}
+      </div>
       </div>
 
       <div className="category-select">

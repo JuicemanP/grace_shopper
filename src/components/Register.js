@@ -50,11 +50,13 @@ const Register = (props) => {
     overflow:'hidden'}}>
       <form onSubmit={handlesubmit} className="form">
         <div className="form-contents">
-        <div>
+        <div >
           <label />
           Email*
-          <div>
+          <div class="input-container">
+          <i class="fa fa-envelope icon"/>
             <input
+            class="input-field"
               type="text"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
@@ -62,11 +64,14 @@ const Register = (props) => {
             />
           </div>
         </div>
-        <div>
+        <div >
           <label />
           Username*
-          <div>
+          
+          <div class="input-container">
+          <i class="fa fa-user icon"/>
             <input
+            class="input-field"
               type="text"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
@@ -77,8 +82,10 @@ const Register = (props) => {
         <div>
           <label />
           Password*
-          <div>
+          <div class="input-container">
+          <i class="fa fa-key icon"></i>
             <input
+            class="input-field"
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
@@ -90,8 +97,9 @@ const Register = (props) => {
         <div>
           <label />
           Confirm Password*
-          <div>
+          <div class="input-container">
             <input
+            class="input-field"
               type="password"
               onChange={(e) => setConfirmPassword(e.target.value)}
               value={confirmPassword}
