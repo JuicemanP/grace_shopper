@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import BASE_URL from "../BaseURL";
 import { useHistory } from "react-router";
+import "./Form.css";
 const Register = (props) => {
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
@@ -40,11 +41,14 @@ const Register = (props) => {
   };
 
   return (
-    <div>
-      <form onSubmit={handlesubmit}>
+    <div style={{backgroundImage:
+    `url("https://initiafy-website-images.s3.amazonaws.com/wordpress-upload/2019/09/Hero-Amazing-Construction-10-US-Football-Stadiums-We-Love.jpg")`,
+    backgroundRepeat: 'no-repeat'}}>
+      <form onSubmit={handlesubmit} className="form">
+        <div className="form-contents">
         <div>
           <label />
-          Email:
+          Email*
           <div>
             <input
               type="text"
@@ -56,7 +60,7 @@ const Register = (props) => {
         </div>
         <div>
           <label />
-          Username:
+          Username*
           <div>
             <input
               type="text"
@@ -68,7 +72,7 @@ const Register = (props) => {
         </div>
         <div>
           <label />
-          Password:
+          Password*
           <div>
             <input
               type="password"
@@ -81,7 +85,7 @@ const Register = (props) => {
         </div>
         <div>
           <label />
-          Confirm Password:
+          Confirm Password*
           <div>
             <input
               type="password"
@@ -94,7 +98,7 @@ const Register = (props) => {
         </div>
         <div>
           <div>
-            <button>Register</button>
+            <button className="register-btn">Register</button>
           </div>
           <div>
             <Link to="/login">Have An Account? Login Here!</Link>
@@ -102,6 +106,7 @@ const Register = (props) => {
         </div>
         <div>
           <p>{errorMessage}</p>
+        </div>
         </div>
       </form>
     </div>

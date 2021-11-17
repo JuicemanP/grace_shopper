@@ -64,8 +64,9 @@ const Products = (props) => {
   return (
     <>
       {user && user.admin && <Link to="create_jersey">ADD NEW JERSEY</Link>}
-      <div>
+      <div className="searchbar-div">
         <input
+        className="product-searchbar"
           type="text"
           placeholder="Search..."
           onChange={(e) => {
@@ -73,6 +74,7 @@ const Products = (props) => {
           }}
         />
       </div>
+
 
       <div className="jerseyGrid">
         {jerseys
