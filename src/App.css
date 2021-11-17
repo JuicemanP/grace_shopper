@@ -47,9 +47,10 @@
 .searchbar-div {
   padding: 6px;
 }
+
 .product-searchbar {
   height: 3vh;
-  width: 10vw;
+  width: 15vw;
   font-size: 2vh;
 }
 .subtotal {
@@ -68,6 +69,25 @@
 .form-contents a {
   color: white;
   font-weight: bold;
+}
+
+.input-container {
+  display: flex;
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+.icon {
+  padding: 10px;
+  background: dodgerblue;
+  color: white;
+  min-width: 50px;
+  text-align: center;
+}
+.input-field {
+  width: 100%;
+  padding: 10px;
+  outline: none;
 }
 .register-btn {
   font-weight: bold;
@@ -106,4 +126,13 @@
   background-size: cover;
   background-image: url("https://wallpaperaccess.com/full/2192512.jpg");
   background-repeat: "no-repeat";
+}
+.add-jersey:hover {
+  border: 2px solid black;
+  padding: 10px;
+  width: 9%;
+}
+.add-jersey a {
+  color: black;
+  font-weight: bolder;
 }

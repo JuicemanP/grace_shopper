@@ -39,16 +39,24 @@ const Login = (props) => {
   };
 
   return (
-    <div style={{backgroundImage:
+    <div  style={{backgroundImage:
       `url("https://initiafy-website-images.s3.amazonaws.com/wordpress-upload/2019/09/Hero-Amazing-Construction-10-US-Football-Stadiums-We-Love.jpg")`,
-      backgroundRepeat: 'no-repeat'}}>
+      backgroundRepeat: 'no-repeat',
+      backgroundSize: 'cover',
+      backgroundPosition: 'center',
+      height:'100vh',
+      overflow:'hidden',
+      }}>
       <form onSubmit={handlesubmit} >
         <div className="form-contents">
         <div >
+          
           <label />
           Username*
-          <div>
+          <div class="input-container">
+          <i class="fa fa-user icon"/>
             <input
+            class="input-field"
               type="text"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
@@ -59,8 +67,10 @@ const Login = (props) => {
         <div>
           <label />
           Password*
-          <div>
+          <div class="input-container">
+          <i class="fa fa-key icon"/>
             <input
+            class="input-field"
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
