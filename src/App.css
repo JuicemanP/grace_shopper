@@ -52,5 +52,26 @@
   width: 10vw;
   font-size:2vh
 }
-
-
+.subtotal{
+  font-weight: bold;
+}
+.checkout-btn{
+  font-weight: bold;
+}
+.form-contents{
+  background: rgba(0,0,0,0.5);
+  margin: auto;
+  width: 50%;
+  padding: 10px;
+  color: white;
+}
+.form-contents a{
+  color: white;
+  font-weight: bold;
+}
+.register-btn{
+  font-weight: bold;
+}
+.login-btn{
+  font-weight: bold;
+}
