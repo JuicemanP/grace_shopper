@@ -41,8 +41,11 @@ const Register = (props) => {
   };
 
   return (
-    <div>
+    <div style={{backgroundImage:
+    `url("https://initiafy-website-images.s3.amazonaws.com/wordpress-upload/2019/09/Hero-Amazing-Construction-10-US-Football-Stadiums-We-Love.jpg")`,
+    backgroundRepeat: 'no-repeat'}}>
       <form onSubmit={handlesubmit} className="form">
+        <div className="form-contents">
         <div>
           <label />
           Email*
@@ -95,7 +98,7 @@ const Register = (props) => {
         </div>
         <div>
           <div>
-            <button>Register</button>
+            <button className="register-btn">Register</button>
           </div>
           <div>
             <Link to="/login">Have An Account? Login Here!</Link>
@@ -103,6 +106,7 @@ const Register = (props) => {
         </div>
         <div>
           <p>{errorMessage}</p>
+        </div>
         </div>
       </form>
     </div>

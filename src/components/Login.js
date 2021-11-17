@@ -10,6 +10,7 @@ const Login = (props) => {
 
   const [errorMessage, setErrorMessage] = useState("");
   const history = useHistory();
+  
   const handlesubmit = async (e) => {
     e.preventDefault();
     console.log(username, password);
@@ -38,9 +39,12 @@ const Login = (props) => {
   };
 
   return (
-    <div>
-      <form onSubmit={handlesubmit} className="form">
-        <div>
+    <div style={{backgroundImage:
+      `url("https://initiafy-website-images.s3.amazonaws.com/wordpress-upload/2019/09/Hero-Amazing-Construction-10-US-Football-Stadiums-We-Love.jpg")`,
+      backgroundRepeat: 'no-repeat'}}>
+      <form onSubmit={handlesubmit} >
+        <div className="form-contents">
+        <div >
           <label />
           Username*
           <div>
@@ -68,7 +72,7 @@ const Login = (props) => {
 
         <div>
           <div>
-            <button>Login</button>
+            <button className="login-btn">Login</button>
           </div>
           <div>
             <Link to="/Register">Don't Have An Account? Register Here!</Link>
@@ -76,6 +80,7 @@ const Login = (props) => {
         </div>
         <div>
           <p>{errorMessage}</p>
+        </div>
         </div>
       </form>
     </div>

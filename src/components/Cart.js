@@ -42,21 +42,20 @@ return(<div className="jersey-columns">
 ><h3>Quantity: {product.cartquantity}</h3>
 
 </div>
+
 </div>)
+
    })}
-   <div >
+ 
+
+</div>
+<div className="subtotal">
       Subtotal: ${sum}
-    </div>
-    <div>
-      <button >Checkout</button>
+      <div>
+        <button className="checkout-btn" >Checkout</button>
+        </div>
     </div>
       </div>
-      
-<div>
-
-</div>
-
-</div>
     </div>
     
   </div>
