@@ -16,13 +16,39 @@ const Products = (props) => {
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
   const [quantity, setQuantity] = useState(1);
-  const [category_id, setCategoryId] = useState("");
+  const [categoryId, setCategoryId] = useState("");
   const [searchTerm, setSearchTerm] = useState("");
   const [product, setProduct] = useState("");
+  const [categoryName, setCategoryName] = useState("All");
   //   console.log(info.data);
   useEffect(() => {
     fetchJerseys();
   }, []);
+
+  useEffect(() => {
+    const filteredJerseys = jerseys.filter(
+      (jersey) => jersey.category_id == categoryId
+    );
+    return setJerseys(filteredJerseys);
+  }, [categoryId]);
+
+  const filterByCategory = async (category_id) => {
+    await fetchJerseys();
+    if (category_id == 1) {
+      setCategoryName("Men's");
+      setCategoryId(1);
+    } else if (category_id == 2) {
+      setCategoryName("Women's");
+      setCategoryId(2);
+    } else if (category_id == 3) {
+      setCategoryName("Youth");
+      setCategoryId(3);
+    } else {
+      setCategoryName("All");
+      await fetchJerseys();
+      return;
+    }
+  };
 
   const addToCart = async ({ product_id, price, quantity }) => {
     const response = await fetch(`${BASE_URL}/orders/${user.id}/orders`);
@@ -73,6 +99,46 @@ const Products = (props) => {
             setSearchTerm(e.target.value);
           }}
         />
+      </div>
+
+      <div className="category-select">
+        Shop Jerseys by category:{" "}
+        <span
+          className="category"
+          onClick={() => {
+            filterByCategory(1);
+          }}
+        >
+          Men's Jerseys{" "}
+        </span>
+        <span
+          className="category"
+          onClick={() => {
+            filterByCategory(2);
+          }}
+        >
+          Women's Jerseys{" "}
+        </span>
+        <span
+          className="category"
+          onClick={() => {
+            filterByCategory(3);
+          }}
+        >
+          Youth Jerseys{" "}
+        </span>
+        <span
+          className="category"
+          onClick={() => {
+            filterByCategory(4);
+          }}
+        >
+          All Jerseys
+        </span>
+      </div>
+
+      <div className="category-select">
+        Currently Viewing {categoryName} Jerseys
       </div>
 
       <div className="jerseyGrid">
