@@ -122,3 +122,11 @@ a:active {
   width: 45px;
   background-color: lightblue;
 }
+
+.carousel {
+  height: 100%;
+  width: 100%;
+}
+.carousel-inner {
+  background-color: red;
+}
