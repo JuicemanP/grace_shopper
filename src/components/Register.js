@@ -43,7 +43,8 @@ const Register = (props) => {
   return (
     <div style={{backgroundImage:
     `url("https://initiafy-website-images.s3.amazonaws.com/wordpress-upload/2019/09/Hero-Amazing-Construction-10-US-Football-Stadiums-We-Love.jpg")`,
-    backgroundRepeat: 'no-repeat'}}>
+    backgroundRepeat: 'no-repeat',
+    backgroundSize: 'cover',}}>
       <form onSubmit={handlesubmit} className="form">
         <div className="form-contents">
         <div>
