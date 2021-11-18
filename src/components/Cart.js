@@ -2,14 +2,23 @@ import { useEffect, useState } from "react";
 import BASE_URL from "../BaseURL";
 
 const Cart = (props) => {
-  const{activeOrder,jerseys,setActiveOrder,
-    cartProducts,setCartProducts,fetchCartProducts
-  ,checkForCart}=props
-const [userProduct,setUserProduct]=useState({})
-const [quantity, setQuantity] = useState(0);
-const [errorMessage,setErrorMessage]=useState("")
 
-const handleDelete= (async (id)=>{
+  const {
+    activeOrder,
+    jerseys,
+    setActiveOrder,
+    cartProducts,
+    setCartProducts,
+    fetchCartProducts,
+    checkForCart,
+    filterCartProducts,
+  } = props;
+  console.log(activeOrder);
+  const [userProduct, setUserProduct] = useState({});
+  const [quantity, setQuantity] = useState(0);
+  const [errorMessage,setErrorMessage]=useState("")
+  
+  const handleDelete= (async (id)=>{
   const resp = await fetch(`${BASE_URL}/productorders/${id}`, {
       method: "DELETE",
       headers: {
@@ -26,14 +35,23 @@ const handleDelete= (async (id)=>{
   }
   setErrorMessage("")
 })
-useEffect(()=>{
- fetchCartProducts()
-},[]);
-  
-console.log(cartProducts)
 
-  const sum =cartProducts.reduce((partial_sum, product) => partial_sum + parseFloat(product.cartprice ) * parseFloat(product.cartquantity), 0);
-  return <div >
+  useEffect(() => {
+    fetchCartProducts();
+    filterCartProducts();
+  }, []);
+
+  console.log(cartProducts);
+
+  const sum = cartProducts.reduce(
+    (partial_sum, product) =>
+      partial_sum +
+      parseFloat(product.cartprice) * parseFloat(product.cartquantity),
+    0
+  );
+  return (
+    <div>
+
     <div>
 <div>
  <h2 className="items-text">Items:</h2>
@@ -73,13 +91,14 @@ return(<div className="jersey-cart">
   <div className="total">Subtotal: ${sum}
   </div>
       
-      <div>
-        <button className="checkout-btn" >Checkout</button>
+
+  
+              <button className="checkout-btn">Checkout</button>
+            </div>
+          </div>
         </div>
-    </div>
       </div>
     </div>
-    
-  </div>
-}
+  );
+};
 export default Cart;
