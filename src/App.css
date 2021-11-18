@@ -109,7 +109,6 @@ body {
   font-weight: bold;
 }
 
-
 /* .carousel {
   height: 100%;
   width: 100%;
@@ -125,14 +124,6 @@ body {
   width: 363px;
   border-radius: 45%;
 } */
-
-.welcome {
-  padding-top: 145px;
-  font-size: xxx-large;
-  text-align: center;
-  /* font-weight: bold; */
-  color: aquamarine;
-}
 
 .backgroundImage {
   height: 100vh;
@@ -150,4 +141,58 @@ body {
 .add-jersey a {
   color: black;
   font-weight: bolder;
+}
+.slider {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.image {
+  width: 300px;
+  height: 300px;
+  border-radius: 10px;
+}
+
+.right-arrow {
+  position: absolute;
+  top: 55%;
+  right: 600px;
+  font-size: 3rem;
+  color: #000;
+  z-index: 10;
+  cursor: pointer;
+  user-select: none;
+}
+
+.left-arrow {
+  position: absolute;
+  top: 55%;
+  left: 600px;
+  font-size: 3rem;
+  color: #000;
+  z-index: 10;
+  cursor: pointer;
+  user-select: none;
+}
+
+.slide {
+  opacity: 0;
+  transition-duration: 1s ease;
+}
+
+.slide.active {
+  opacity: 1;
+  transition-duration: 1s;
+  transform: scale(1.08);
+}
+.welcome {
+  font-size: xx-large;
+  display: center;
+  text-align: center;
+  width: fit-content;
+  margin-left: 663px;
+  color: aquamarine;
+  background-color: rgb(0 0 0 / 56%);
 }
