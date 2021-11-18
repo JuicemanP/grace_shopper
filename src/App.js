@@ -81,7 +81,12 @@ function App() {
         setJerseys={setJerseys}
       />
       <Route exact path="/">
-        <Home user={user} />
+        <Home
+          user={user}
+          jerseys={jerseys}
+          fetchJerseys={fetchJerseys}
+          setJerseys={setJerseys}
+        />
       </Route>
       <Route path="/register">
         <Register setToken={setToken} setUser={setUser} />

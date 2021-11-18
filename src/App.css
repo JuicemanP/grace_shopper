@@ -56,6 +56,7 @@ body {
   width: 45px;
   background-color: lightblue;
 }
+
 .searchbar-div {
   padding: 6px;
 }
@@ -107,6 +108,40 @@ body {
 .login-btn {
   font-weight: bold;
 }
+
+
+/* .carousel {
+  height: 100%;
+  width: 100%;
+} */
+/* .carousel-inner {
+  background-color: lightcyan;
+  height: 100%;
+  width: 100%;
+} */
+
+/* .product {
+  height: 345px;
+  width: 363px;
+  border-radius: 45%;
+} */
+
+.welcome {
+  padding-top: 145px;
+  font-size: xxx-large;
+  text-align: center;
+  /* font-weight: bold; */
+  color: aquamarine;
+}
+
+.backgroundImage {
+  height: 100vh;
+  margin-top: 0%;
+  background-size: cover;
+  background-image: url("https://wallpaperaccess.com/full/2192512.jpg");
+  background-repeat: "no-repeat";
+}
+
 .add-jersey:hover {
   border: 2px solid black;
   padding: 10px;
