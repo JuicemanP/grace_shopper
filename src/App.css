@@ -113,11 +113,13 @@
 } */
 
 .welcome {
-  padding-top: 145px;
-  font-size: xxx-large;
+  font-size: xx-large;
+  display: center;
   text-align: center;
-  /* font-weight: bold; */
+  width: fit-content;
+  margin-left: 663px;
   color: aquamarine;
+  background-color: rgb(0 0 0 / 56%);
 }
 
 .backgroundImage {
