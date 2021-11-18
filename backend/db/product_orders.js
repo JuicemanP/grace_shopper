@@ -57,22 +57,13 @@ const getProductOrdersByProduct = async ({ id }) => {
   }
 };
 
-const updateProductOrder = async ({ id, price, quantity }) => {
-  if (price != undefined) {
-    await client.query(
-      `
-      UPDATE product_orders
-      SET price = $1
-      WHERE id = $2;
-      `,
-      [price, id]
-    );
-  }
+const updateProductOrder = async ({ id, quantity }) => {
+ 
   if (quantity != undefined) {
     await client.query(
       `
       UPDATE product_orders
-      SET quantity = $1
+      SET cartquantity = $1
       WHERE id = $2;
       `,
       [quantity, id]
@@ -98,7 +89,7 @@ const destroyProductOrder = async (id) => {
         `,
       [id]
     );
-    return response.rows[0];
+    return response;
   } catch (error) {
     throw error;
   }

@@ -89,7 +89,8 @@ const Products = (props) => {
 
   return (
     <>
-      {user && user.admin && <Link to="create_jersey">ADD NEW JERSEY</Link>}
+      <div className="add-jersey">{user && user.admin && <Link to="create_jersey">ADD NEW JERSEY</Link>}
+      </div>
       <div className="searchbar-div">
         <input
           className="product-searchbar"
@@ -100,8 +101,8 @@ const Products = (props) => {
           }}
         />
       </div>
-
-      <div className="category-select">
+<div className="category-bar">
+  <div className="category-select">
         Shop Jerseys by category:{" "}
         <span
           className="category"
@@ -140,7 +141,8 @@ const Products = (props) => {
       <div className="category-select">
         Currently Viewing {categoryName} Jerseys
       </div>
-
+</div>
+      
       <div className="jerseyGrid">
         {jerseys
           .filter((jersey) => {
