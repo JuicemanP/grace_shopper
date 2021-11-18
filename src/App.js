@@ -41,10 +41,11 @@ function App() {
       contentType: "application/json",
     });
     const info = await response.json();
-    const filteredCartProd= info.filter((cart)=>cart.order_id==activeOrder.id)
+    const filteredCartProd = info.filter(
+      (cart) => cart.order_id == activeOrder.id
+    );
     console.log(info, "info");
     setAllProductOrders(info);
-
   };
 
   const checkForCart = async () => {
@@ -132,7 +133,7 @@ function App() {
       </Route>
       <Route path="/cart">
         <Cart
-        user={user}
+          user={user}
           activeOrder={activeOrder}
           setActiveOrder={setActiveOrder}
           cartProducts={cartProducts}
@@ -140,7 +141,6 @@ function App() {
           fetchCartProducts={fetchCartProducts}
           filterCartProducts={filterCartProducts}
           checkForCart={checkForCart}
-          
         />
       </Route>
     </div>
