@@ -9,6 +9,7 @@ import Products from "./components/Products";
 import Register from "./components/Register";
 import NewJersey from "./components/NewJersey";
 import Cart from "./components/Cart";
+import { SliderData } from "./components/SliderData";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -40,8 +41,10 @@ function App() {
       contentType: "application/json",
     });
     const info = await response.json();
+    const filteredCartProd= info.filter((cart)=>cart.order_id==activeOrder.id)
     console.log(info, "info");
     setAllProductOrders(info);
+
   };
 
   const checkForCart = async () => {
@@ -97,12 +100,7 @@ function App() {
         setJerseys={setJerseys}
       />
       <Route exact path="/">
-        <Home
-          user={user}
-          jerseys={jerseys}
-          fetchJerseys={fetchJerseys}
-          setJerseys={setJerseys}
-        />
+        <Home user={user} slides={SliderData} />
       </Route>
       <Route path="/register">
         <Register setToken={setToken} setUser={setUser} />
@@ -134,6 +132,7 @@ function App() {
       </Route>
       <Route path="/cart">
         <Cart
+        user={user}
           activeOrder={activeOrder}
           setActiveOrder={setActiveOrder}
           cartProducts={cartProducts}
@@ -141,6 +140,7 @@ function App() {
           fetchCartProducts={fetchCartProducts}
           filterCartProducts={filterCartProducts}
           checkForCart={checkForCart}
+          
         />
       </Route>
     </div>
