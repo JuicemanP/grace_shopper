@@ -9,6 +9,7 @@ import Products from "./components/Products";
 import Register from "./components/Register";
 import NewJersey from "./components/NewJersey";
 import Cart from "./components/Cart";
+import { SliderData } from "./components/SliderData";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -22,8 +23,6 @@ function App() {
       contentType: "application/json",
     });
     const info = await response.json();
-
-    console.log(info, "info");
     setJerseys(info);
   };
 
@@ -83,12 +82,7 @@ function App() {
         setJerseys={setJerseys}
       />
       <Route exact path="/">
-        <Home
-          user={user}
-          jerseys={jerseys}
-          fetchJerseys={fetchJerseys}
-          setJerseys={setJerseys}
-        />
+        <Home user={user} slides={SliderData} />
       </Route>
       <Route path="/register">
         <Register setToken={setToken} setUser={setUser} />
