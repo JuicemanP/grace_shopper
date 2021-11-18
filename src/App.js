@@ -22,8 +22,6 @@ function App() {
       contentType: "application/json",
     });
     const info = await response.json();
-
-    console.log(info, "info");
     setJerseys(info);
   };
 
