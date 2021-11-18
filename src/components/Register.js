@@ -37,88 +37,91 @@ const Register = (props) => {
     }
     localStorage.setItem("token", info.token);
     props.setToken(info.token);
+    props.setUser(info.user);
     history.push("/");
   };
 
   return (
-    <div style={{backgroundImage:
-    `url("https://initiafy-website-images.s3.amazonaws.com/wordpress-upload/2019/09/Hero-Amazing-Construction-10-US-Football-Stadiums-We-Love.jpg")`,
-    backgroundRepeat: 'no-repeat',
-    backgroundSize: 'cover',
-    backgroundPosition: 'center',
-    height:'100vh',
-    overflow:'hidden'}}>
+    <div
+      style={{
+        backgroundImage: `url("https://initiafy-website-images.s3.amazonaws.com/wordpress-upload/2019/09/Hero-Amazing-Construction-10-US-Football-Stadiums-We-Love.jpg")`,
+        backgroundRepeat: "no-repeat",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        height: "100vh",
+        overflow: "hidden",
+      }}
+    >
       <form onSubmit={handlesubmit} className="form">
         <div className="form-contents">
-        <div >
-          <label />
-          Email*
-          <div class="input-container">
-          <i class="fa fa-envelope icon"/>
-            <input
-            class="input-field"
-              type="text"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-            />
-          </div>
-        </div>
-        <div >
-          <label />
-          Username*
-          
-          <div class="input-container">
-          <i class="fa fa-user icon"/>
-            <input
-            class="input-field"
-              type="text"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-              required
-            />
-          </div>
-        </div>
-        <div>
-          <label />
-          Password*
-          <div class="input-container">
-          <i class="fa fa-key icon"></i>
-            <input
-            class="input-field"
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              minLength={"8"}
-              required
-            />
-          </div>
-        </div>
-        <div>
-          <label />
-          Confirm Password*
-          <div class="input-container">
-            <input
-            class="input-field"
-              type="password"
-              onChange={(e) => setConfirmPassword(e.target.value)}
-              value={confirmPassword}
-              minLength={"8"}
-              required
-            />
-          </div>
-        </div>
-        <div>
           <div>
-            <button className="register-btn">Register</button>
+            <label />
+            Email*
+            <div class="input-container">
+              <i class="fa fa-envelope icon" />
+              <input
+                class="input-field"
+                type="text"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+              />
+            </div>
           </div>
           <div>
-            <Link to="/login">Have An Account? Login Here!</Link>
+            <label />
+            Username*
+            <div class="input-container">
+              <i class="fa fa-user icon" />
+              <input
+                class="input-field"
+                type="text"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                required
+              />
+            </div>
           </div>
-        </div>
-        <div>
-          <p>{errorMessage}</p>
-        </div>
+          <div>
+            <label />
+            Password*
+            <div class="input-container">
+              <i class="fa fa-key icon"></i>
+              <input
+                class="input-field"
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                minLength={"8"}
+                required
+              />
+            </div>
+          </div>
+          <div>
+            <label />
+            Confirm Password*
+            <div class="input-container">
+              <input
+                class="input-field"
+                type="password"
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                value={confirmPassword}
+                minLength={"8"}
+                required
+              />
+            </div>
+          </div>
+          <div>
+            <div>
+              <button className="register-btn">Register</button>
+            </div>
+            <div>
+              <Link to="/login">Have An Account? Login Here!</Link>
+            </div>
+          </div>
+          <div>
+            <p>{errorMessage}</p>
+          </div>
         </div>
       </form>
     </div>

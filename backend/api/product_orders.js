@@ -2,7 +2,8 @@ const productOrdersRouter = require("express").Router();
 
 const {
   addProductToOrder,
-  getAllProductOrders
+  getAllProductOrders,
+  destroyProductOrder,
 } = require("../db/product_orders");
 
 //Add product to order:
@@ -33,4 +34,14 @@ productOrdersRouter.get("/", async (req, res) => {
   }
 });
 
-module.exports=productOrdersRouter
+productOrdersRouter.delete("/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const deletedProductOrder = await destroyProductOrder(id);
+    return res.send(deletedProductOrder);
+  } catch (error) {
+    console.error(error);
+  }
+});
+
+module.exports = productOrdersRouter;

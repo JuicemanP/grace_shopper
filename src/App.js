@@ -16,6 +16,7 @@ function App() {
   const [jerseys, setJerseys] = useState([]);
   const [activeOrder, setActiveOrder] = useState({});
   const [cartProducts, setCartProducts] = useState([]);
+  const [allProductOrders, setAllProductOrders] = useState([]);
 
   const fetchJerseys = async () => {
     const response = await fetch(`${BASE_URL}/products`, {
@@ -25,13 +26,22 @@ function App() {
     setJerseys(info);
   };
 
+  const filterCartProducts = () => {
+    if (activeOrder.id) {
+      const filteredProdOrds = allProductOrders.filter(
+        (prodOrd) => prodOrd.order_id == activeOrder.id
+      );
+      return setCartProducts(filteredProdOrds);
+    }
+  };
+
   const fetchCartProducts = async () => {
     const response = await fetch(`${BASE_URL}/productorders`, {
       contentType: "application/json",
     });
     const info = await response.json();
     console.log(info, "info");
-    setCartProducts(info);
+    setAllProductOrders(info);
   };
 
   const checkForCart = async () => {
@@ -69,7 +79,13 @@ function App() {
     };
     fetchUser();
     fetchJerseys();
+    checkForCart();
+    fetchCartProducts();
   }, []);
+
+  useEffect(() => {
+    filterCartProducts();
+  }, [allProductOrders, user]);
 
   return (
     <div>
@@ -109,6 +125,8 @@ function App() {
           jerseys={jerseys}
           setJerseys={setJerseys}
           fetchJerseys={fetchJerseys}
+          fetchCartProducts={fetchCartProducts}
+          setCartProducts={setCartProducts}
           user={user}
           activeOrder={activeOrder}
           setActiveOrder={setActiveOrder}
@@ -121,6 +139,7 @@ function App() {
           cartProducts={cartProducts}
           setCartProducts={setCartProducts}
           fetchCartProducts={fetchCartProducts}
+          filterCartProducts={filterCartProducts}
           checkForCart={checkForCart}
         />
       </Route>

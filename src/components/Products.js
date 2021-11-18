@@ -10,15 +10,13 @@ const Products = (props) => {
     user,
     activeOrder,
     setActiveOrder,
+    fetchCartProducts,
+    setCartProducts,
   } = props;
-  const [title, setTitle] = useState("");
-  const [image, setImage] = useState("");
-  const [description, setDescription] = useState("");
-  const [price, setPrice] = useState("");
+  const history = useHistory();
   const [quantity, setQuantity] = useState(1);
   const [categoryId, setCategoryId] = useState("");
   const [searchTerm, setSearchTerm] = useState("");
-  const [product, setProduct] = useState("");
   const [categoryName, setCategoryName] = useState("All");
   //   console.log(info.data);
   useEffect(() => {
@@ -51,6 +49,7 @@ const Products = (props) => {
   };
 
   const addToCart = async ({ product_id, price, quantity }) => {
+    setCartProducts([]);
     const response = await fetch(`${BASE_URL}/orders/${user.id}/orders`);
     const orders = await response.json();
     const cartOrder = orders.filter((order) => {
@@ -84,7 +83,8 @@ const Products = (props) => {
     });
     const productOrder = await resp.json();
     console.log(productOrder);
-    setActiveOrder(productOrder);
+    fetchCartProducts();
+    history.push("/cart");
   };
 
   return (
@@ -169,7 +169,7 @@ const Products = (props) => {
                 ) : (
                   <h5>Youth Jersey</h5>
                 )}
-                {user && jersey.quantity > 0 ? (
+                {user && jersey.quantity > 0 && (
                   <>
                     <div>
                       <p>Choose Quantity– {jersey.quantity} remaining:</p>
@@ -202,9 +202,8 @@ const Products = (props) => {
                       </button>
                     </div>
                   </>
-                ) : (
-                  <p>SOLD OUT</p>
                 )}
+                {user && jersey.quantity == 0 && <p>SOLD OUT</p>}
               </div>
             );
           })}
