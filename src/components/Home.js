@@ -24,34 +24,30 @@ const Home = ({ slides }) => {
         <div className="welcome">
           <h1>Welcome To Fan Haven!</h1>
           <h3>Top Tier Jerseys For A Bargain!</h3>
-          <h5>To begin shopping, click the waffle above </h5>
-          <section className="slider">
-            <FaArrowAltCircleLeft className="left-arrow" onClick={prevSlide} />
-            <FaArrowAltCircleRight
-              className="right-arrow"
-              onClick={nextSlide}
-            />
-            {SliderData.map((slide, index) => {
-              return (
-                <div
-                  className={index === current ? "slide active" : "slide"}
-                  key={index}
-                >
-                  {index === current && (
-                    <a href="/products">
-                      {" "}
-                      <img
-                        src={slide.image}
-                        alt="travel image"
-                        className="image"
-                      />
-                    </a>
-                  )}
-                </div>
-              );
-            })}
-          </section>{" "}
         </div>
+        <section className="slider">
+          <FaArrowAltCircleLeft className="left-arrow" onClick={prevSlide} />
+          <FaArrowAltCircleRight className="right-arrow" onClick={nextSlide} />
+          {SliderData.map((slide, index) => {
+            return (
+              <div
+                className={index === current ? "slide active" : "slide"}
+                key={index}
+              >
+                {index === current && (
+                  <a href="/products">
+                    {" "}
+                    <img
+                      src={slide.image}
+                      alt="travel image"
+                      className="image"
+                    />
+                  </a>
+                )}
+              </div>
+            );
+          })}
+        </section>{" "}
       </div>
     </div>
   );
