@@ -26,8 +26,8 @@ body {
 
 
     .thumbnail-cart{
-      max-width: 20vw;
-  max-height: 20vh;
+      max-width: 15vw;
+  max-height: 15vh;
       grid-area: a;
     }
 .jersey-cart{
@@ -40,6 +40,9 @@ body {
 	align-items: center;
   border: solid 2px black;
   background: linear-gradient(45deg, lightskyblue, transparent);
+}
+.jersey-cart:hover{
+  border: navy 3px dotted
 }
 .jersey-title{
   grid-area: b;
