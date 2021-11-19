@@ -36,12 +36,14 @@ body {
   background: linear-gradient(45deg, lightskyblue, transparent);
 }
 
-.thumbnail-cart {
-  max-width: 20vw;
-  max-height: 20vh;
-  grid-area: a;
-}
-.jersey-cart {
+
+
+    .thumbnail-cart{
+      max-width: 15vw;
+  max-height: 15vh;
+      grid-area: a;
+    }
+.jersey-cart{
   margin: auto;
   width: 90%;
   height: 30%;
@@ -52,7 +54,11 @@ body {
   border: solid 2px black;
   background: linear-gradient(45deg, lightskyblue, transparent);
 }
-.jersey-title {
+
+.jersey-cart:hover{
+  border: navy 3px dotted
+}
+.jersey-title{
   grid-area: b;
 }
 .jersey-price {
