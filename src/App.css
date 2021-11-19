@@ -21,6 +21,13 @@ body {
   font-size: 300%;
 }
 
+.cart-notif {
+  font-family: "Play", sans-serif;
+  font-weight: bold;
+  border: 2px solid #060b26;
+  padding: 2px;
+}
+
 .thumbnail {
   max-width: 35vw;
   max-height: 35vh;
@@ -36,14 +43,12 @@ body {
   background: linear-gradient(45deg, lightskyblue, transparent);
 }
 
-
-
-    .thumbnail-cart{
-      max-width: 15vw;
+.thumbnail-cart {
+  max-width: 15vw;
   max-height: 15vh;
-      grid-area: a;
-    }
-.jersey-cart{
+  grid-area: a;
+}
+.jersey-cart {
   margin: auto;
   width: 90%;
   height: 30%;
@@ -54,10 +59,11 @@ body {
   border: solid 2px black;
   background: linear-gradient(45deg, lightskyblue, transparent);
 }
-.jersey-cart:hover{
-  border: navy 3px dotted
+
+.jersey-cart:hover {
+  border: navy 3px dotted;
 }
-.jersey-title{
+.jersey-title {
   grid-area: b;
 }
 .jersey-price {
@@ -291,8 +297,8 @@ body {
   display: center;
   text-align: center;
   width: fit-content;
-  margin-left: 619px;
-  color: aquamarine;
+  margin-left: 32%;
+  color: white;
   background-color: rgb(0 0 0 / 56%);
 }
 

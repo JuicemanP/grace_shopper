@@ -79,12 +79,36 @@ const createDB = async () => {
 
 async function createInitialUser() {
   try {
-    await createUser({
-      email: "testuser69@gmail.com",
-      username: "testuser69",
-      password: "testpass",
-      admin: true,
-    });
+  //   await createUser(
+  //     {email: "fanhaven1@gmail.com",
+  //     username: "fanhavenadmin",
+  //     password: "fanhavenadmin",
+  //     admin: true},
+
+  //     {email: "fanhaven1@gmail.com",
+  //     username: "fanhaven",
+  //     password: "fanhavenadmin",
+  //   },{
+  //     email: "fanhaven2@gmail.com",
+  //     username: "fanhaven4u",
+  //     password: "fanhavenadmin",
+  // }
+  const usersToCreate = [
+     {email: "fanhaven@gmail.com",
+         username: "fanhavenadmin",
+        password: "fanhavenadmin",
+        admin: true},
+  
+        {email: "fanhaven1@gmail.com",
+       username: "fanhaven",
+         password: "fanhavenadmin",
+    },{
+       email: "fanhaven2@gmail.com",
+        username: "fanhaven4u",
+        password: "fanhavenadmin",}
+  ]
+  const users = await Promise.all(usersToCreate.map(createUser)
+    );
   } catch (error) {
     console.error(error);
     throw error;
