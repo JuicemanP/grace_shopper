@@ -24,9 +24,12 @@ const Cart = (props) => {
         "Content-Type": "application/json",
       },
     });
-    console.log(resp);
+
     const info = await resp.json();
-    fetchCartProducts();
+    console.log(info);
+    // fetchCartProducts();
+    const newCart = cartProducts.filter((cartProduct) => cartProduct.id != id);
+    setCartProducts(newCart);
     if (info.error) {
       setErrorMessage(info.error);
       return;
