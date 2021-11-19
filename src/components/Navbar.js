@@ -29,6 +29,11 @@ const Navbar = (props) => {
       {" "}
       <nav>
         <ul className="nav-links">
+          <li>
+            {props.user && props.user.admin && (
+              <a href="/admin">Admin Portal</a>
+            )}
+          </li>
           <li> {!props.user && <a href="/login"> Login</a>}</li>{" "}
           <li>{!props.user && <a href="/register">Register</a>}</li>
           <li>

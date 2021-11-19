@@ -5,6 +5,13 @@
   justify-content: center;
 }
 
+.admin {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  margin: 20px;
+}
+
 body {
   overflow: "hidden";
 }
@@ -29,38 +36,36 @@ body {
   background: linear-gradient(45deg, lightskyblue, transparent);
 }
 
-
-    .thumbnail-cart{
-      max-width: 20vw;
+.thumbnail-cart {
+  max-width: 20vw;
   max-height: 20vh;
-      grid-area: a;
-    }
-.jersey-cart{
+  grid-area: a;
+}
+.jersey-cart {
   margin: auto;
-	width: 90%;
-	height: 30%;
-	display: flex;
+  width: 90%;
+  height: 30%;
+  display: flex;
   margin-top: 5px;
-	justify-content: space-between;
-	align-items: center;
+  justify-content: space-between;
+  align-items: center;
   border: solid 2px black;
   background: linear-gradient(45deg, lightskyblue, transparent);
 }
-.jersey-title{
+.jersey-title {
   grid-area: b;
-  
 }
-.jersey-price{
-  grid-area: c
+.jersey-price {
+  grid-area: c;
 }
-.jersey-quantity{
- padding-right:10px
+.jersey-quantity {
+  padding-right: 10px;
 }
 .thumbnail:hover {
   transform: scale(1.25);
   border-radius: 50%;
 }
-.items-text{
+.items-text {
   padding-left: 5%;
 }
 .addCart:hover {
@@ -82,14 +87,14 @@ body {
   padding-top: 2px;
   padding-bottom: 2px;
 }
-.category-bar{
+.category-bar {
   border: 2px solid black;
 }
 .category {
   text-decoration: underline;
 }
-.category:hover{
-  border: 2px solid black
+.category:hover {
+  border: 2px solid black;
 }
 
 .quantity {
@@ -108,18 +113,18 @@ body {
   font-size: 2vh;
 }
 
-.subtotal{
-	font-size: 22px;
-	font-family: 'Open Sans';
-	font-weight: 700;
-	color: #202020;
-  float:right;
+.subtotal {
+  font-size: 22px;
+  font-family: "Open Sans";
+  font-weight: 700;
+  color: #202020;
+  float: right;
   padding-right: 5%;
 }
-.total{
-	width: 100%;
-	display: flex;
-	justify-content: space-between;
+.total {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
 }
 .checkout-btn {
   font-weight: bold;
@@ -159,6 +164,36 @@ body {
 }
 .login-btn {
   font-weight: bold;
+}
+
+.user-info {
+  margin-top: 20px;
+  padding: 5px;
+  background-color: lightgrey;
+  border: 2px solid black;
+  display: grid;
+  grid-template-rows: 20px;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.add-jersey-2 {
+  font-family: "Play", sans-serif;
+}
+
+.user-id {
+  grid-column-start: 1;
+}
+
+.user-username {
+  grid-column-start: 2;
+}
+
+.user-email {
+  grid-column-start: 3;
+}
+
+.user-admin {
+  grid-column-start: 4;
 }
 
 /* .carousel {

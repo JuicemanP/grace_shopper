@@ -1,4 +1,4 @@
-const { createUser, getUser } = require("../db/user");
+const { createUser, getUser, getAllUsers } = require("../db/user");
 
 const usersRouter = require("express").Router();
 const jwt = require("jsonwebtoken");
@@ -42,6 +42,15 @@ usersRouter.post("/login", async (req, res, next) => {
     }
   } catch (error) {
     next(error);
+  }
+});
+
+usersRouter.get("/", async (req, res) => {
+  try {
+    const users = await getAllUsers();
+    return res.send(users);
+  } catch (error) {
+    console.error(error);
   }
 });
 

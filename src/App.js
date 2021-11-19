@@ -9,11 +9,13 @@ import Products from "./components/Products";
 import Register from "./components/Register";
 import NewJersey from "./components/NewJersey";
 import Cart from "./components/Cart";
+import Admin from "./components/Admin";
 import { SliderData } from "./components/SliderData";
 
 function App() {
   const [user, setUser] = useState(null);
   const [token, setToken] = useState(null);
+  const [allUsers, setAllUsers] = useState([]);
   const [jerseys, setJerseys] = useState([]);
   const [activeOrder, setActiveOrder] = useState({});
   const [cartProducts, setCartProducts] = useState([]);
@@ -25,6 +27,12 @@ function App() {
     });
     const info = await response.json();
     setJerseys(info);
+  };
+
+  const fetchAllUsers = async () => {
+    const response = await fetch(`${BASE_URL}/users`);
+    const info = await response.json();
+    return setAllUsers(info);
   };
 
   const filterCartProducts = () => {
@@ -85,6 +93,7 @@ function App() {
     fetchJerseys();
     checkForCart();
     fetchCartProducts();
+    fetchAllUsers();
   }, []);
 
   useEffect(() => {
@@ -142,6 +151,9 @@ function App() {
           filterCartProducts={filterCartProducts}
           checkForCart={checkForCart}
         />
+      </Route>
+      <Route path="/admin">
+        <Admin allUsers={allUsers} user={user} />
       </Route>
     </div>
   );
