@@ -27,7 +27,6 @@ const getAllProductOrders = async () => {
   }
 };
 
-
 const getProductOrderById = async (id) => {
   try {
     const response = await client.query(
@@ -58,25 +57,19 @@ const getProductOrdersByProduct = async ({ id }) => {
 };
 
 const updateProductOrder = async ({ id, quantity }) => {
- 
-  if (quantity != undefined) {
-    await client.query(
+  try {
+    const response = await client.query(
       `
       UPDATE product_orders
       SET cartquantity = $1
-      WHERE id = $2;
+      WHERE id = $2
+      RETURNING *;
       `,
       [quantity, id]
     );
+  } catch (error) {
+    console.error(error);
   }
-  const response = await client.query(
-    `
-    SELECT * FROM product_orders WHERE id = $1;
-    `,
-    [id]
-  );
-
-  return response.rows[0];
 };
 
 const destroyProductOrder = async (id) => {

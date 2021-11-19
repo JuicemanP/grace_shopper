@@ -4,7 +4,7 @@ const {
   addProductToOrder,
   getAllProductOrders,
   updateProductOrder,
-  destroyProductOrder
+  destroyProductOrder,
 } = require("../db/product_orders");
 
 //Add product to order:
@@ -35,27 +35,29 @@ productOrdersRouter.get("/", async (req, res) => {
   }
 });
 //PATCH all products orders:
-productOrdersRouter.patch("/cartproductId",async(req,res)=>{
+productOrdersRouter.patch("/cartproductId", async (req, res) => {
   try {
-    const {product_id,cartquantity,order_id }=req.body;
-    const updateCart= await updateProductOrder({
-      product_id: product_id
-      ,cartquantity: cartquantity,
-      order_id: order_id});
-    return res.send(updateCart)
+    const { product_id, cartquantity, order_id } = req.body;
+    const updateCart = await updateProductOrder({
+      product_id: product_id,
+      cartquantity: cartquantity,
+      order_id: order_id,
+    });
+    return res.send(updateCart);
   } catch (error) {
-    console.error(error)
+    console.error(error);
   }
+});
 
-})
 //DELETE product orders:
-productOrdersRouter.delete('/:cartproductId', async (req,res)=>{
+productOrdersRouter.delete("/:cartproductId", async (req, res) => {
   try {
-    const id= req.params.cartproductId;
-    const deleteItem=await destroyProductOrder(id);
-    res.send(deleteItem)
+    const id = req.params.cartproductId;
+    const deleteItem = await destroyProductOrder(id);
+    res.send(deleteItem);
   } catch (error) {
-    console.error(error)
+    console.error(error);
   }
-})
-module.exports=productOrdersRouter
+});
+
+module.exports = productOrdersRouter;
