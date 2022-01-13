@@ -263,10 +263,14 @@ body {
   top: 65%;
   right: 600px;
   font-size: 4rem;
-  color: gold;
+  color: white;
   z-index: 10;
   cursor: pointer;
   user-select: none;
+}
+
+.right-arrow:hover {
+  color: #060b26;
 }
 
 .left-arrow {
@@ -274,12 +278,16 @@ body {
   top: 65%;
   left: 600px;
   font-size: 4rem;
-  color: gold;
+  color: white;
   height: 59px;
   z-index: 10;
   cursor: pointer;
   -webkit-user-select: none;
   user-select: none;
+}
+
+.left-arrow:hover {
+  color: #060b26;
 }
 
 .slide {
