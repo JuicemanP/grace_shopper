@@ -89,6 +89,7 @@ function App() {
       });
       setToken(savedToken);
     };
+
     fetchUser();
     fetchJerseys();
     checkForCart();
