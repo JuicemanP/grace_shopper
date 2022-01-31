@@ -2,7 +2,6 @@ const productsRouter = require("express").Router();
 const { getAllProducts, createProduct, getProductById } = require("../db");
 const multer = require("multer");
 
-
 const upload = multer({ dest: "public/images" });
 
 //GET ALL PRODUCTS
@@ -11,6 +10,7 @@ productsRouter.get("/", async (req, res) => {
   try {
     console.log("getting all products!");
     const products = await getAllProducts();
+    console.log(products, "hello");
     return res.send(products);
   } catch (error) {
     res.status(500).send({ error });
@@ -69,14 +69,14 @@ productsRouter.patch("/:id", async (req, res) => {
 //     res.status(500).send({ error: "error" });
 //   }
 // });
-productsRouter.get("/:productId", async(req,res)=>{
-try {
-  const productId=req.params.productId
-  const product =await getProductById(productId)
-  res.send(product)
-} catch (error) {
-  console.error(error)
-}
-})
+productsRouter.get("/:productId", async (req, res) => {
+  try {
+    const productId = req.params.productId;
+    const product = await getProductById(productId);
+    res.send(product);
+  } catch (error) {
+    console.error(error);
+  }
+});
 
 module.exports = productsRouter;
